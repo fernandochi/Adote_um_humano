@@ -5,8 +5,10 @@ const Container = styled.div`
   /* height: 100%; */
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   text-align: center;
+  font-family: "Amatic SC", cursive;
+  font-size: 35px;
 `;
 
 const Form = styled.form`
