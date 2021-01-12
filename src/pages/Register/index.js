@@ -90,7 +90,6 @@ const RegisterUser = () => {
             <Input type="checkbox" name="adopter" ref={register} />
           </Checkbox>
         </CheckboxContainer>
-        {/* <Errors>{errors.typeOfUser?.message}</Errors> */}
         <Button type="submit">Cadastrar</Button>
         <Link onClick={() => history.push("/login")}>
           Já é cadastrado? Faça seu login aqui
