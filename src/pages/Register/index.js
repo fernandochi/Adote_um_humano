@@ -39,7 +39,6 @@ const RegisterUser = () => {
       .typeError("Campo deve conter um número")
       .required("Campo obrigatório"),
     address: yup.string().required("Campo obrigatório"),
-    comments: yup.string(),
     typeOfUser: yup
       .string()
       .oneOf(["donor", "adopter"], "Você deve selecionar um dos campos"),
@@ -72,9 +71,6 @@ const RegisterUser = () => {
         <Label htmlFor="address">Endereço</Label>
         <Input name="address" ref={register} />
         <Errors>{errors.address?.message}</Errors>
-        <Label htmlFor="comments">Observações</Label>
-        <TextArea name="comments" ref={register} />
-        <Errors>{errors.comments?.message}</Errors>
         <CheckboxContainer>
           <Checkbox>
             <Label htmlFor="typeOfUser">Doador</Label>

@@ -21,7 +21,7 @@ const Form = styled.form`
   justify-content: space-evenly;
   width: 100%;
   height: 510px;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   padding: 10px;
   border-radius: 5px;
   box-shadow: 9px 13px 18px -5px rgba(64, 64, 64, 0.75);
