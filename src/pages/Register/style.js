@@ -1,30 +1,28 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: #184d47;
+  color: white;
   font-family: "Amatic SC", cursive;
 `;
 
 const Title = styled.h1`
   text-align: center;
   font-size: 35px;
-  margin-bottom: 6px;
+  padding-top: 20px;
 `;
 
 const Form = styled.form`
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 510px;
-  /* margin: 20px auto; */
-  padding: 10px;
+  height: 90%;
+  padding: 15px 10px 10px 10px;
   border-radius: 5px;
-  box-shadow: 9px 13px 18px -5px rgba(64, 64, 64, 0.75);
 `;
 
 const Label = styled.label`
@@ -71,8 +69,9 @@ const Button = styled.button`
   border-radius: 5px;
   height: 24px;
   width: 90px;
-  font-family: "Roboto Mono", monospace;
+  font-family: "Amatic SC", cursive;
   font-weight: bold;
+  font-size: 18px;
   text-transform: uppercase;
   color: white;
   background-color: #96bb7c;
@@ -83,7 +82,7 @@ const Button = styled.button`
 `;
 
 const Link = styled.span`
-  font-size: 14px;
+  font-size: 18px;
   margin: 10px 0;
   :hover {
     text-decoration: underline;
