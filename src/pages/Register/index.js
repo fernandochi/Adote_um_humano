@@ -8,7 +8,6 @@ import {
   Form,
   Label,
   Input,
-  TextArea,
   Checkbox,
   CheckboxContainer,
   Errors,
@@ -18,7 +17,7 @@ import {
 
 const RegisterUser = () => {
   const history = useHistory();
-  const schema = yup.object().shape({
+  let schema = yup.object().shape({
     name: yup
       .string()
       .matches(/^[a-zA-Z\s]+$/, "Campo deve conter apenas letras")
@@ -39,9 +38,19 @@ const RegisterUser = () => {
       .typeError("Campo deve conter um número")
       .required("Campo obrigatório"),
     address: yup.string().required("Campo obrigatório"),
-    typeOfUser: yup
-      .string()
-      .oneOf(["donor", "adopter"], "Você deve selecionar um dos campos"),
+    donor: yup.bool(),
+    adopter: yup.bool(),
+  });
+
+  schema = schema.test("CheckboxTest", null, (obj) => {
+    if (obj.donor || obj.adopter) {
+      return true;
+    }
+    return new yup.ValidationError(
+      "Você deve selecionar um dos campos",
+      null,
+      "Donor/Adopter"
+    );
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -73,25 +82,15 @@ const RegisterUser = () => {
         <Errors>{errors.address?.message}</Errors>
         <CheckboxContainer>
           <Checkbox>
-            <Label htmlFor="typeOfUser">Doador</Label>
-            <Input
-              type="radio"
-              name="typeOfUser"
-              value="donor"
-              ref={register}
-            />
+            <Label htmlFor="donor">Doador</Label>
+            <Input type="checkbox" name="donor" ref={register} />
           </Checkbox>
           <Checkbox>
-            <Label htmlFor="typeOfUser">Adotante</Label>
-            <Input
-              type="radio"
-              name="typeOfUser"
-              value="adopter"
-              ref={register}
-            />
+            <Label htmlFor="adopter">Adotante</Label>
+            <Input type="checkbox" name="adopter" ref={register} />
           </Checkbox>
         </CheckboxContainer>
-        <Errors>{errors.typeOfUser?.message}</Errors>
+        {/* <Errors>{errors.typeOfUser?.message}</Errors> */}
         <Button type="submit">Cadastrar</Button>
         <Link onClick={() => history.push("/login")}>
           Já é cadastrado? Faça seu login aqui

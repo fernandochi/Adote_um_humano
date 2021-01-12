@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import BackgroundImage from "../../components/images/Background.png";
+
+import BackgroundImage3 from "../../components/images/Background3.png";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   color: white;
-  background-image: url(${BackgroundImage});
+  background-image: url(${BackgroundImage3});
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -41,6 +42,9 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 16px;
+  @media (min-width: 700px) {
+    font-size: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -48,13 +52,6 @@ const Input = styled.input`
   outline: none;
   border-radius: 5px;
   height: 20px;
-`;
-
-const TextArea = styled.textarea`
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  width: 200px;
 `;
 
 const Checkbox = styled.div`
@@ -75,6 +72,10 @@ const Errors = styled.span`
   font-size: 9px;
   color: black;
   font-weight: bolder;
+
+  @media (min-width: 700px) {
+    font-size: 14px;
+  }
 `;
 
 const Button = styled.button`
@@ -110,7 +111,6 @@ export {
   Form,
   Label,
   Input,
-  TextArea,
   Checkbox,
   CheckboxContainer,
   Errors,
