@@ -3,26 +3,36 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #184d47;
   color: white;
+  background-color: #d6efc7;
   font-family: "Amatic SC", cursive;
+  @media (min-width: 1000px) {
+    padding-top: 50px;
+  }
 `;
 
 const Title = styled.h1`
   text-align: center;
   font-size: 35px;
-  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 const Form = styled.form`
+  background-color: #184d47;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 90%;
+  height: 100%;
   padding: 15px 10px 10px 10px;
   border-radius: 5px;
+
+  @media (min-width: 1000px) {
+    margin: auto;
+    width: 30vw;
+    height: 85vh;
+  }
 `;
 
 const Label = styled.label`

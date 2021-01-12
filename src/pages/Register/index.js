@@ -54,8 +54,8 @@ const RegisterUser = () => {
 
   return (
     <Container>
-      <Title>Cadastro</Title>
       <Form onSubmit={handleSubmit(handleForm)}>
+        <Title>Cadastro</Title>
         <Label htmlFor="name">Nome</Label>
         <Input name="name" ref={register} />
         <Errors>{errors.name?.message}</Errors>
