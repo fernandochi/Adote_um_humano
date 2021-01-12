@@ -3,7 +3,7 @@ import RegisterUser from "./pages/Register";
 const App = () => {
   return (
     <>
-      <Link to="/register">Cadastrar</Link>
+      {/* <Link to="/register">Cadastrar</Link> */}
       <Switch>
         <Route exact path="/">
           <h1>awasome app</h1>

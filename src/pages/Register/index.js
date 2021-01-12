@@ -9,6 +9,8 @@ import {
   Label,
   Input,
   TextArea,
+  Checkbox,
+  CheckboxContainer,
   Errors,
   Button,
   Link,
@@ -34,14 +36,13 @@ const RegisterUser = () => {
       .number()
       .integer("Deve ser um número inteiro")
       .positive("Não deve ser um número negativo")
-      .typeError("Deve conter um número")
+      .typeError("Campo deve conter um número")
       .required("Campo obrigatório"),
     address: yup.string().required("Campo obrigatório"),
     comments: yup.string(),
     typeOfUser: yup
       .string()
-      .oneOf(["donor", "adopter"])
-      .required("Um dos campos deve ser marcado"),
+      .oneOf(["donor", "adopter"], "Você deve selecionar um dos campos"),
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -54,8 +55,8 @@ const RegisterUser = () => {
 
   return (
     <Container>
-      <Title>Cadastro</Title>
       <Form onSubmit={handleSubmit(handleForm)}>
+        <Title>Cadastro</Title>
         <Label htmlFor="name">Nome</Label>
         <Input name="name" ref={register} />
         <Errors>{errors.name?.message}</Errors>
@@ -74,10 +75,26 @@ const RegisterUser = () => {
         <Label htmlFor="comments">Observações</Label>
         <TextArea name="comments" ref={register} />
         <Errors>{errors.comments?.message}</Errors>
-        <Label htmlFor="typeOfUser">Doador</Label>
-        <Input type="radio" name="typeOfUser" value="donor" ref={register} />
-        <Label htmlFor="typeOfUser">Adotante</Label>
-        <Input type="radio" name="typeOfUser" value="adopter" ref={register} />
+        <CheckboxContainer>
+          <Checkbox>
+            <Label htmlFor="typeOfUser">Doador</Label>
+            <Input
+              type="radio"
+              name="typeOfUser"
+              value="donor"
+              ref={register}
+            />
+          </Checkbox>
+          <Checkbox>
+            <Label htmlFor="typeOfUser">Adotante</Label>
+            <Input
+              type="radio"
+              name="typeOfUser"
+              value="adopter"
+              ref={register}
+            />
+          </Checkbox>
+        </CheckboxContainer>
         <Errors>{errors.typeOfUser?.message}</Errors>
         <Button type="submit">Cadastrar</Button>
         <Link onClick={() => history.push("/login")}>
