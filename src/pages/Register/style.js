@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import BackgroundImage from "../../components/images/Background.png";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   color: white;
-  background-color: #d6efc7;
+  background-image: url(${BackgroundImage});
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
   font-family: "Amatic SC", cursive;
   @media (min-width: 1000px) {
     padding-top: 50px;
