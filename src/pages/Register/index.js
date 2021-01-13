@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import {
   Container,
   Title,
@@ -46,7 +47,14 @@ const RegisterUser = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    const url = "https://adote-um-humano.herokuapp.com/register";
+    axios.post(url, data).then((res) => {
+      if (res.status === 201) {
+        setTimeout(() => {
+          history.push("/login");
+        }, 1000);
+      }
+    });
   };
 
   return (

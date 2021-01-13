@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   Container,
   Title,
@@ -18,6 +19,22 @@ import {
 } from "../Register/style";
 
 const ResgisterAnimal = () => {
+  const [ImageAnimalResponse, setIAR] = useState({});
+  useEffect(() => {
+    window.localStorage.setItem("userId", 1);
+    axios
+      .post("https://api.imgur.com/oauth2/token", {
+        refresh_token: "9f83fdcfa971c61d25aa8a83fbed7a871cd7d40a",
+        client_id: "511f1ba99da58a2",
+        client_secret: "91604d541c1861443eb98957efc9597365c8fd4a",
+        grant_type: "refresh_token",
+      })
+      .then((res) => {
+        window.localStorage.setItem("accessToken", res.data.access_token);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   let schema = yup.object().shape({
     race: yup
       .string()
@@ -35,35 +52,56 @@ const ResgisterAnimal = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (data) => {
-    console.log(data);
-  };
+  const handleForm = async (data) => {
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      `Bearer ${window.localStorage.getItem("accessToken")}`
+    );
 
-  const handleAvatar = (ev) => {
-    ev.preventDefault();
+    var formdata = new FormData();
+    formdata.append("image", data.avatar[0]);
 
-    const data = new FormData();
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
 
-    data.append("image", ev.target.files[0]);
-    axios
-      .post("https://api.imgur.com/3/upload", data, {
-        headers: {
-          Authorization: `Client-ID {511f1ba99da58a2}`,
+    await fetch("https://api.imgur.com/3/image", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.data);
+        setIAR(result.data);
+      })
+      .catch((error) => console.log("error", error));
+    await axios
+      .post(
+        "https://adote-um-humano.herokuapp.com/animals",
+        {
+          ...data,
+          userId: Number(window.localStorage.getItem("userId")),
+          avatar: ImageAnimalResponse.link,
+          img_ID: ImageAnimalResponse.id,
+          deletehash: ImageAnimalResponse.deletehash,
         },
-      })
-      .then((res) => {
-        console.log("feito", res);
-      })
-      .catch((err) => console.error("avatar não foi alterado.", err));
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZlcm5hbmRvQGVtYWlsLmNvbSIsImlhdCI6MTYxMDU3NTgwNiwiZXhwIjoxNjEwNTc5NDA2LCJzdWIiOiIxIn0.vBE7P8-XFQ0gyXMHxb-S7W810i3i2ouewkutRuCfBEI`,
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
+
   return (
     <Container>
-      <Form>
-        <Label htmlFor="avatar">Foto</Label>
-        <input id="avatar" name="avatar" type="file" onChange={handleAvatar} />
-      </Form>
       <Form onSubmit={handleSubmit(handleForm)}>
         <Title>Novo Pet</Title>
+        <Label htmlFor="avatar">Foto</Label>
+        <input id="avatar" name="avatar" type="file" ref={register} />
         <Label htmlFor="race">Raça</Label>
         <Input name="race" ref={register} />
         <Errors>{errors.race?.message}</Errors>
