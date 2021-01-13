@@ -1,5 +1,6 @@
 import { Route, Link, Switch } from "react-router-dom";
 import RegisterUser from "./pages/Register";
+import ResponsibleForm from "./components/responsibleForm/index";
 const App = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const App = () => {
         </Route>
         <Route path="/register">
           <RegisterUser />
+          {/* <ResponsibleForm /> */}
         </Route>
       </Switch>
     </>

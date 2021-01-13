@@ -1,0 +1,103 @@
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import {
+  Container,
+  Title,
+  Form,
+  Label,
+  Input,
+  Checkbox,
+  CheckboxContainer,
+  Button,
+} from "../../pages/Register/style";
+
+const ResponsibleForm = () => {
+  let schema = yup.object().shape({
+    residence: yup
+      .string()
+      .oneOf(["house", "apartment"])
+      .required("Todos devem ser preenchidos"),
+    security: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Todos devem ser preenchidos"),
+    vaccine: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Todos devem ser preenchidos"),
+    castration: yup
+      .string()
+      .oneOf(["yes", "no"])
+      .required("Todos devem ser preenchidos"),
+  });
+
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleForm = (data) => {
+    console.log(data);
+  };
+  return (
+    <Container>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <Title>Adoção responsável</Title>
+        <Label>Qual seu tipo de residência?</Label>
+        <CheckboxContainer>
+          <Checkbox>
+            <Label htmlFor="house">Casa</Label>
+            <Input type="radio" name="residence" value="house" ref={register} />
+          </Checkbox>
+          <Checkbox>
+            <Label htmlFor="apartment">Apartamento</Label>
+            <Input
+              type="radio"
+              name="residence"
+              value="apartment"
+              ref={register}
+            />
+          </Checkbox>
+        </CheckboxContainer>
+        <Label>
+          Sua residência é segura? Muros altos, janelas teladas, etc
+        </Label>
+        <CheckboxContainer>
+          <Checkbox>
+            <Label htmlFor="security">Sim</Label>
+            <Input type="radio" name="security" value="yes" ref={register} />
+          </Checkbox>
+          <Checkbox>
+            <Label htmlFor="security">Não</Label>
+            <Input type="radio" name="security" value="no" ref={register} />
+          </Checkbox>
+        </CheckboxContainer>
+        <Label>Você poderá vacinar o animal caso ele precise?</Label>
+        <CheckboxContainer>
+          <Checkbox>
+            <Label htmlFor="vaccine">Sim</Label>
+            <Input type="radio" name="vaccine" value="yes" ref={register} />
+          </Checkbox>
+          <Checkbox>
+            <Label htmlFor="vaccine">Não</Label>
+            <Input type="radio" name="vaccine" value="no" ref={register} />
+          </Checkbox>
+        </CheckboxContainer>
+        <Label>Você poderá castrar o animal caso ele precise?</Label>
+        <CheckboxContainer>
+          <Checkbox>
+            <Label htmlFor="castration">Sim</Label>
+            <Input type="radio" name="castration" value="yes" ref={register} />
+          </Checkbox>
+          <Checkbox>
+            <Label htmlFor="castration">Não</Label>
+            <Input type="radio" name="castration" value="no" ref={register} />
+          </Checkbox>
+        </CheckboxContainer>
+        <Button type="submit">Enviar</Button>
+      </Form>
+    </Container>
+  );
+};
+
+export default ResponsibleForm;
