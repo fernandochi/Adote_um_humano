@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import BackgroundImage3 from "../../components/images/Background3.png";
+import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
   width: 100vw;
@@ -52,6 +52,12 @@ const Input = styled.input`
   outline: none;
   border-radius: 5px;
   height: 20px;
+  width: 200px;
+
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 25px;
+  }
 `;
 
 const Checkbox = styled.div`
@@ -66,6 +72,7 @@ const CheckboxContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 250px;
+  padding-bottom: 5px;
 `;
 
 const Errors = styled.span`
@@ -93,11 +100,12 @@ const Button = styled.button`
   :hover {
     background-color: #6c8759;
     cursor: pointer;
+    transition: all 0.3s;
   }
 `;
 
 const Link = styled.span`
-  font-size: 18px;
+  font-size: 20px;
   margin: 10px 0;
   :hover {
     text-decoration: underline;

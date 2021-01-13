@@ -5,7 +5,6 @@ import LoginUser from "./pages/Login";
 const App = () => {
   return (
     <>
-      {/* <Link to="/register">Cadastrar</Link> */}
       <Switch>
         <Route exact path="/">
           <h1>awasome app</h1>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import BackgroundImage3 from "../../components/images/Background3.png";
+import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
   width: 100vw;
