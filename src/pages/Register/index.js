@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import {
   Container,
   Title,
@@ -39,18 +40,6 @@ const RegisterUser = () => {
       .required("Campo obrigatório"),
     address: yup.string().required("Campo obrigatório"),
     donor: yup.bool(),
-    adopter: yup.bool(),
-  });
-
-  schema = schema.test("CheckboxTest", null, (obj) => {
-    if (obj.donor || obj.adopter) {
-      return true;
-    }
-    return new yup.ValidationError(
-      "Você deve selecionar um dos campos",
-      null,
-      "Donor/Adopter"
-    );
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -58,7 +47,14 @@ const RegisterUser = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    const url = "https://adote-um-humano.herokuapp.com/register";
+    axios.post(url, data).then((res) => {
+      if (res.status === 201) {
+        setTimeout(() => {
+          history.push("/login");
+        }, 1000);
+      }
+    });
   };
 
   return (
@@ -82,12 +78,8 @@ const RegisterUser = () => {
         <Errors>{errors.address?.message}</Errors>
         <CheckboxContainer>
           <Checkbox>
-            <Label htmlFor="donor">Doador</Label>
+            <Label htmlFor="donor">Você é um doador?</Label>
             <Input type="checkbox" name="donor" ref={register} />
-          </Checkbox>
-          <Checkbox>
-            <Label htmlFor="adopter">Adotante</Label>
-            <Input type="checkbox" name="adopter" ref={register} />
           </Checkbox>
         </CheckboxContainer>
         <Button type="submit">Cadastrar</Button>

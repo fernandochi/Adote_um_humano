@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import BackgroundImage3 from "../../components/images/Background3.png";
+import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
   width: 100vw;
@@ -72,6 +72,7 @@ const CheckboxContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 250px;
+  padding-bottom: 5px;
 `;
 
 const Errors = styled.span`
@@ -99,6 +100,7 @@ const Button = styled.button`
   :hover {
     background-color: #6c8759;
     cursor: pointer;
+    transition: all 0.3s;
   }
 `;
 
