@@ -113,6 +113,32 @@ const Link = styled.span`
   }
 `;
 
+const Select = styled.select`
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  height: 20px;
+  width: 200px;
+
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 25px;
+  }
+`;
+
+const TextArea = styled.textarea`
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  height: 100px;
+  width: 200px;
+
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 125px;
+  }
+`;
+
 export {
   Container,
   Title,
@@ -124,4 +150,6 @@ export {
   Errors,
   Button,
   Link,
+  Select,
+  TextArea,
 };
