@@ -1,4 +1,6 @@
 import * as yup from "yup";
+import axios from "axios";
+import jwt from "jsonwebtoken";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -15,6 +17,7 @@ import {
 
 const LoginUser = () => {
   const history = useHistory();
+
   let schema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Campo obrigatório"),
     password: yup
@@ -28,7 +31,21 @@ const LoginUser = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    const urlLogin = "https://adote-um-humano.herokuapp.com/login";
+
+    axios.post(urlLogin, data).then((res) => {
+      const id = jwt.decode(res.data.accessToken).sub;
+
+      const urlUser = `https://adote-um-humano.herokuapp.com/users/${id}`;
+
+      axios
+        .get(urlUser, {
+          headers: { Authorization: `Bearer ${res.data.accessToken}` },
+        })
+        .then((res) => {
+          res.data.donor ? history.push("/donor") : history.push("/grantee");
+        });
+    });
   };
 
   return (

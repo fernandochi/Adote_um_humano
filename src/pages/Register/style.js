@@ -8,7 +8,7 @@ const Container = styled.div`
   color: white;
   background-image: url(${BackgroundImage3});
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
   font-family: "Amatic SC", cursive;
   @media (min-width: 1000px) {
@@ -77,7 +77,7 @@ const CheckboxContainer = styled.div`
 
 const Errors = styled.span`
   font-size: 9px;
-  color: black;
+  color: #96bb7c;
   font-weight: bolder;
 
   @media (min-width: 700px) {
