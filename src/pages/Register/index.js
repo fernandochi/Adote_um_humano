@@ -39,18 +39,6 @@ const RegisterUser = () => {
       .required("Campo obrigatório"),
     address: yup.string().required("Campo obrigatório"),
     donor: yup.bool(),
-    adopter: yup.bool(),
-  });
-
-  schema = schema.test("CheckboxTest", null, (obj) => {
-    if (obj.donor || obj.adopter) {
-      return true;
-    }
-    return new yup.ValidationError(
-      "Você deve selecionar um dos campos",
-      null,
-      "Donor/Adopter"
-    );
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -82,12 +70,8 @@ const RegisterUser = () => {
         <Errors>{errors.address?.message}</Errors>
         <CheckboxContainer>
           <Checkbox>
-            <Label htmlFor="donor">Doador</Label>
+            <Label htmlFor="donor">Você é um doador?</Label>
             <Input type="checkbox" name="donor" ref={register} />
-          </Checkbox>
-          <Checkbox>
-            <Label htmlFor="adopter">Adotante</Label>
-            <Input type="checkbox" name="adopter" ref={register} />
           </Checkbox>
         </CheckboxContainer>
         <Button type="submit">Cadastrar</Button>
