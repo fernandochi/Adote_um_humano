@@ -52,6 +52,12 @@ const Input = styled.input`
   outline: none;
   border-radius: 5px;
   height: 20px;
+  width: 200px;
+
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 25px;
+  }
 `;
 
 const Checkbox = styled.div`
@@ -97,7 +103,7 @@ const Button = styled.button`
 `;
 
 const Link = styled.span`
-  font-size: 18px;
+  font-size: 20px;
   margin: 10px 0;
   :hover {
     text-decoration: underline;
