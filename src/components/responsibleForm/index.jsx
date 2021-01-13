@@ -1,8 +1,9 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useHistory, useParams } from "react-router-dom";
 import {
-  Container,
   Title,
   Form,
   Label,
@@ -11,8 +12,11 @@ import {
   CheckboxContainer,
   Button,
 } from "../../pages/Register/style";
+import { Container } from "./style";
 
 const ResponsibleForm = () => {
+  const history = useHistory();
+  const { id } = useParams();
   let schema = yup.object().shape({
     residence: yup
       .string()
@@ -37,6 +41,19 @@ const ResponsibleForm = () => {
   });
 
   const handleForm = (data) => {
+    const sendData = { responsible: data };
+    const url = `https://adote-um-humano.herokuapp.com/users/${id}`;
+    axios
+      .put(
+        url,
+        { ...sendData },
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("authToken"),
+          },
+        }
+      )
+      .then((res) => history.push("/animals"));
     console.log(data);
   };
   return (
