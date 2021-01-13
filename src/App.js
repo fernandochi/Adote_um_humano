@@ -11,7 +11,6 @@ const App = () => {
         </Route>
         <Route path="/register">
           <RegisterUser />
-          {/* <ResponsibleForm /> */}
         </Route>
       </Switch>
     </>
