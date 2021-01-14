@@ -6,6 +6,10 @@ const Text = styled.h1`
   font-size: 30px;
 
   @media (min-width: 700px) {
+    font-size: 45px;
+  }
+
+  @media (min-width: 1000px) {
     font-size: 60px;
   }
 `;
