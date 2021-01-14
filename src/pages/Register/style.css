@@ -1,0 +1,22 @@
+@keyframes exterior {
+  from {
+    background-color: red;
+    opacity: 0;
+  }
+
+  to {
+    background-color: #333;
+    opacity: 0.8;
+  }
+}
+
+@keyframes popup {
+  from {
+    top: -8rem;
+    opacity: 0;
+  }
+  to {
+    top: 4rem;
+    opacity: 1;
+  }
+}

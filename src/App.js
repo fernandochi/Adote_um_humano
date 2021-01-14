@@ -5,13 +5,16 @@ const App = () => {
   return (
     <>
       {/* <Link to="/register">Cadastrar</Link> */}
-      <RegisterAnimal />
+
       <Switch>
         <Route exact path="/">
           <h1>awasome app</h1>
         </Route>
         <Route path="/register">
           <RegisterUser />
+        </Route>
+        <Route path="/animal-form">
+          <RegisterAnimal />
         </Route>
       </Switch>
     </>

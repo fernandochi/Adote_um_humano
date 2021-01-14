@@ -1,10 +1,10 @@
 import styled from "styled-components";
-
+import "./style.css";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
   background-image: url(${BackgroundImage3});
   background-repeat: no-repeat;
@@ -28,8 +28,8 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
   padding: 15px 10px 10px 10px;
   border-radius: 5px;
 
@@ -114,6 +114,8 @@ const Link = styled.span`
 `;
 
 const Select = styled.select`
+  font-family: inherit;
+  background-color: #fff;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -127,6 +129,7 @@ const Select = styled.select`
 `;
 
 const TextArea = styled.textarea`
+  font-family: inherit;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -136,6 +139,68 @@ const TextArea = styled.textarea`
   @media (min-width: 700px) {
     width: 250px;
     height: 125px;
+  }
+`;
+
+const PopUp = styled.div`
+  display: ${(props) => (props.isVisible ? "grid" : "none")};
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  z-index: 3;
+  width: 70vw;
+  height: 40vw;
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  background-color: #184d47;
+  border-radius: 0.5em;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  box-shadow: 2px 2px 5px 3px #1b141461;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-areas:
+    ". . close"
+    ". msg ."
+    ". . button";
+  ${(props) => props.isVisible && "animation: popup 1s"}
+`;
+
+const ExteriorDiv = styled.div`
+  z-index: ${(props) => (props.isVisible ? 2 : -92)};
+  opacity: 0.8;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #333;
+  filter: blur(5px);
+  ::after {
+    opacity: initial;
+  }
+  ${(props) => props.isVisible && "animation: exterior 1s"}
+`;
+const TextDiv = styled.div`
+  display: flex;
+  place-items: center;
+  color: #fff;
+  grid-area: msg;
+`;
+
+const CloseDiv = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  color: #fff;
+  grid-area: close;
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  > p {
+    font-size: 2rem;
+    color: red;
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -152,4 +217,8 @@ export {
   Link,
   Select,
   TextArea,
+  PopUp,
+  ExteriorDiv,
+  TextDiv,
+  CloseDiv,
 };
