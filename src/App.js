@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
+import Logo from "./components/logo/index";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Switch>
         <Route exact path="/">
           <h1>awasome app</h1>
+          <Logo />
         </Route>
 
         <Route exact path="/login">
