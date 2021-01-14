@@ -5,9 +5,9 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  Container,
+  GridContainer,
   Title,
-  Form,
+  FormAnimals,
   Label,
   Input,
   Checkbox,
@@ -16,6 +16,9 @@ import {
   Button,
   Select,
   TextArea,
+  InputImg,
+  Img,
+  ShowCase,
 } from "../Register/style";
 import PopUpDiv from "./popup.jsx";
 import { $REFRESH_TOKEN, $CLIENT_ID, $CLIENTE_SECRET } from "./dados";
@@ -47,7 +50,11 @@ const ResgisterAnimal = () => {
       .string()
       .matches(/^[a-zA-Z\s]+$/, "Campo deve conter apenas letras")
       .required("Campo obrigatório"),
-    age: yup.number().integer().positive().required("Campo obrigatório"),
+    age: yup
+      .number()
+      .integer("Informe um número positivo")
+      .positive("Informe um número positivo")
+      .required("Campo obrigatório"),
     race: yup
       .string()
       .matches(/^[a-zA-Z\s]+$/, "Campo deve conter apenas letras")
@@ -92,7 +99,7 @@ const ResgisterAnimal = () => {
         "https://adote-um-humano.herokuapp.com/animals",
         {
           ...data,
-          userId: Number(window.localStorage.getItem("userId")),
+          donorId: Number(window.localStorage.getItem("userId")),
           avatar: ImageAnimalResponse.link,
           img_ID: ImageAnimalResponse.id,
           deletehash: ImageAnimalResponse.deletehash,
@@ -111,14 +118,36 @@ const ResgisterAnimal = () => {
     SetReqError(false);
   };
 
+  const previewImagem = (ev) => {
+    const $ = document.querySelector.bind(document);
+    const img_src = $(".preview-img");
+    let fileToUpload = ev.target.files[0];
+    if (fileToUpload === undefined) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (ev) => (img_src.src = ev.target.result);
+    reader.readAsDataURL(fileToUpload);
+  };
+
   return (
     <>
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
-      <Container>
-        <Form onSubmit={handleSubmit(handleForm)}>
+      <GridContainer>
+        <FormAnimals onSubmit={handleSubmit(handleForm)}>
           <Title>Novo Pet</Title>
+          <Img className="preview-img" />
           <Label htmlFor="avatar">Foto</Label>
-          <input id="avatar" name="avatar" type="file" ref={register} />
+          <InputImg
+            id="avatar"
+            name="avatar"
+            type="file"
+            ref={register}
+            onChange={previewImagem}
+            accept="image/*"
+          />
           <Label htmlFor="name">Nome</Label>
           <Input name="name" ref={register} />
           <Errors>{errors.name?.message}</Errors>
@@ -173,8 +202,11 @@ const ResgisterAnimal = () => {
           <Label htmlFor="obs">Observações adicionais</Label>
           <TextArea id="obs" name="obs" ref={register} />
           <Button type="submit">Cadastrar pet</Button>
-        </Form>
-      </Container>
+        </FormAnimals>
+        <ShowCase>
+          <p>Os seus atuais animais</p>
+        </ShowCase>
+      </GridContainer>
     </>
   );
 };

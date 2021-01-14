@@ -3,12 +3,12 @@ import "./style.css";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   color: white;
   background-image: url(${BackgroundImage3});
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
   font-family: "Amatic SC", cursive;
   @media (min-width: 1000px) {
@@ -28,8 +28,8 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   padding: 15px 10px 10px 10px;
   border-radius: 5px;
 
@@ -77,7 +77,7 @@ const CheckboxContainer = styled.div`
 
 const Errors = styled.span`
   font-size: 9px;
-  color: black;
+  color: #96bb7c;
   font-weight: bolder;
 
   @media (min-width: 700px) {
@@ -145,9 +145,11 @@ const TextArea = styled.textarea`
 const PopUp = styled.div`
   display: ${(props) => (props.isVisible ? "grid" : "none")};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  font-family: "Amatic SC", cursive;
+  font-size: 1.7rem;
   z-index: 3;
-  width: 70vw;
-  height: 40vw;
+  width: 90vw;
+  height: 20vh;
   position: fixed;
   top: 4rem;
   left: 50%;
@@ -184,6 +186,7 @@ const TextDiv = styled.div`
   place-items: center;
   color: #fff;
   grid-area: msg;
+  font: inherit;
 `;
 
 const CloseDiv = styled.div`
@@ -204,6 +207,127 @@ const CloseDiv = styled.div`
   }
 `;
 
+const InputImg = styled.input`
+  color: #001f43;
+  width: 100%;
+  font-size: 10px;
+  color: transparent;
+  outline: none;
+
+  ::focus {
+    outline: none;
+  }
+
+  ::-webkit-file-upload-button {
+    visibility: hidden;
+    display: none;
+  }
+
+  &:before {
+    font: inherit;
+    height: 25px;
+    content: "Escolha um arquivo";
+    background-color: #fad586;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 130px;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    padding: 9px;
+    outline: none;
+    white-space: nowrap;
+    border-radius: 40px;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+    margin: 0 auto;
+  }
+`;
+
+const Img = styled.img`
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 1px solid #333;
+`;
+
+const GridContainer = styled(Container)`
+  background-color: #d6efc7;
+  background-size: 50%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 30vmin;
+
+  @media (min-width: 1000px) {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+  }
+`;
+
+const ShowCase = styled.div`
+  margin: 0 auto;
+  justify-self: end;
+  align-self: auto;
+  font-size: 2rem;
+  width: 90vw;
+  height: 85vh;
+  max-height: 85vh;
+  background-color: beige;
+  padding: 8px;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  > p {
+    color: red;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  @media (min-width: 1000px) {
+    margin-right: 15px;
+    width: 30vw;
+    align-self: center;
+  }
+`;
+
+const FormAnimals = styled(Form)`
+  width: 90vw;
+  margin: 0 auto;
+  height: initial;
+
+  @media (min-width: 1000px) {
+    margin: auto;
+    margin-left: 15px;
+    width: 30vw;
+    height: 85vh;
+  }
+`;
 export {
   Container,
   Title,
@@ -221,4 +345,9 @@ export {
   ExteriorDiv,
   TextDiv,
   CloseDiv,
+  InputImg,
+  Img,
+  GridContainer,
+  ShowCase,
+  FormAnimals,
 };

@@ -10,7 +10,7 @@ const PopUpDiv = ({ isVisible, closeInfo }) => {
           cadastrar seu pet, por favor, tente mais tarde
         </TextDiv>
         <CloseDiv onClick={closeInfo}>
-          <p>X</p>
+          <p>Fechar</p>
         </CloseDiv>
       </PopUp>
     </>

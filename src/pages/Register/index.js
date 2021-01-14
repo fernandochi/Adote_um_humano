@@ -61,18 +61,23 @@ const RegisterUser = () => {
     <Container>
       <Form onSubmit={handleSubmit(handleForm)}>
         <Title>Cadastro</Title>
+
         <Label htmlFor="name">Nome</Label>
         <Input name="name" ref={register} />
         <Errors>{errors.name?.message}</Errors>
+
         <Label htmlFor="email">Email</Label>
         <Input name="email" ref={register} />
         <Errors>{errors.email?.message}</Errors>
+
         <Label htmlFor="password">Senha</Label>
         <Input name="password" type="password" ref={register} />
         <Errors>{errors.password?.message}</Errors>
+
         <Label htmlFor="contact">Telefone</Label>
         <Input name="contact" ref={register} />
         <Errors>{errors.contact?.message}</Errors>
+
         <Label htmlFor="address">Endereço</Label>
         <Input name="address" ref={register} />
         <Errors>{errors.address?.message}</Errors>
