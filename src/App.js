@@ -15,12 +15,10 @@ const App = () => {
         <Route exact path="/login">
           <LoginUser />
         </Route>
-
         <Route path="/register">
           <RegisterUser />
         </Route>
       </Switch>
-      <div>alooooo</div>
       <Footer />
     </>
   );

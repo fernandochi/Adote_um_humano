@@ -34,11 +34,12 @@ const Button = styled.button`
   font-family: "Amatic SC";
   font-size: 30px;
   padding: 5px 10px;
-  background-color: #d6efc7;
+  background-color: ${(props) =>
+    props.location === props.path ? "#fad586" : "#d6efc7"};
   border: none;
   border-radius: 10px;
   :hover {
-    background-color: #fad586;
+    border-bottom: 1px solid black;
     cursor: pointer;
   }
   @media (max-width: 700px) {
