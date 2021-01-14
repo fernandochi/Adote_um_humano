@@ -11,14 +11,22 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   font-family: "Amatic SC", cursive;
-  @media (min-width: 1000px) {
+  @media (min-width: 768px) {
     padding-top: 50px;
+  }
+
+  @media (min-width: 1100px) {
+    padding-top: 100px;
+  }
+
+  @media (min-width: 2000px) {
+    padding-top: 175px;
   }
 `;
 
 const Title = styled.h1`
   text-align: center;
-  font-size: 35px;
+  font-size: 45px;
   padding-bottom: 20px;
 `;
 
@@ -33,17 +41,24 @@ const Form = styled.form`
   padding: 15px 10px 10px 10px;
   border-radius: 5px;
 
-  @media (min-width: 1000px) {
-    margin: auto;
-    width: 30vw;
-    height: 85vh;
+  @media (min-width: 768px) {
+    margin: 0 auto;
+    min-width: 319px;
+    max-width: 30vw;
+    height: 65vh;
+  }
+
+  @media (min-width: 1100px) {
+    margin: 0 auto;
+    max-height: 55vh;
+    max-width: 25vw;
   }
 `;
 
 const Label = styled.label`
-  font-size: 16px;
-  @media (min-width: 700px) {
-    font-size: 20px;
+  font-size: 20px;
+  @media (min-width: 768px) {
+    font-size: 25px;
   }
 `;
 
@@ -51,28 +66,7 @@ const Input = styled.input`
   border: none;
   outline: none;
   border-radius: 5px;
-  height: 20px;
-  width: 200px;
-
-  @media (min-width: 700px) {
-    width: 250px;
-    height: 25px;
-  }
-`;
-
-const Checkbox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 150px;
-`;
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 250px;
-  padding-bottom: 5px;
+  height: 30px;
 `;
 
 const Errors = styled.span`
@@ -100,12 +94,11 @@ const Button = styled.button`
   :hover {
     background-color: #6c8759;
     cursor: pointer;
-    transition: all 0.3s;
   }
 `;
 
 const Link = styled.span`
-  font-size: 20px;
+  font-size: 22px;
   margin: 10px 0;
   :hover {
     text-decoration: underline;
@@ -113,15 +106,4 @@ const Link = styled.span`
   }
 `;
 
-export {
-  Container,
-  Title,
-  Form,
-  Label,
-  Input,
-  Checkbox,
-  CheckboxContainer,
-  Errors,
-  Button,
-  Link,
-};
+export { Container, Title, Form, Label, Input, Errors, Button, Link };

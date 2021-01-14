@@ -1,13 +1,19 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import RegisterUser from "./pages/Register";
+import LoginUser from "./pages/Login";
+
 const App = () => {
   return (
     <>
-      {/* <Link to="/register">Cadastrar</Link> */}
       <Switch>
         <Route exact path="/">
           <h1>awasome app</h1>
         </Route>
+
+        <Route exact path="/login">
+          <LoginUser />
+        </Route>
+
         <Route path="/register">
           <RegisterUser />
         </Route>
