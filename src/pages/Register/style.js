@@ -226,7 +226,7 @@ const InputImg = styled.input`
   &:before {
     font: inherit;
     height: 25px;
-    content: "Escolha um arquivo";
+    content: "Escolha uma foto";
     background-color: #fad586;
     display: flex;
     flex-direction: column;
@@ -262,12 +262,15 @@ const GridContainer = styled(Container)`
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 30vmin;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
 
   @media (min-width: 1000px) {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "help help"
+      "form current";
   }
 `;
 
@@ -285,7 +288,8 @@ const ShowCase = styled.div`
   box-sizing: border-box;
   overflow-y: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   > p {
     color: red;
   }
@@ -313,6 +317,7 @@ const ShowCase = styled.div`
     margin-right: 15px;
     width: 30vw;
     align-self: center;
+    grid-area: current;
   }
 `;
 
@@ -326,6 +331,23 @@ const FormAnimals = styled(Form)`
     margin-left: 15px;
     width: 30vw;
     height: 85vh;
+    grid-area: form;
+  }
+`;
+
+const HelpDiv = styled.div`
+  width: 90vw;
+  margin: 0 auto;
+  background: beige;
+  color: red;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: justify;
+  padding: 8px;
+  margin-top: 1rem;
+
+  @media (min-width: 1000px) {
+    grid-area: help;
   }
 `;
 export {
@@ -350,4 +372,5 @@ export {
   GridContainer,
   ShowCase,
   FormAnimals,
+  HelpDiv,
 };

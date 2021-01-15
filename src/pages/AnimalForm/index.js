@@ -19,6 +19,7 @@ import {
   InputImg,
   Img,
   ShowCase,
+  HelpDiv,
 } from "../Register/style";
 import PopUpDiv from "./popup.jsx";
 import { $REFRESH_TOKEN, $CLIENT_ID, $CLIENTE_SECRET } from "./dados";
@@ -28,7 +29,6 @@ const ResgisterAnimal = () => {
   const [ImageAnimalResponse, setIAR] = useState({});
   const [ReqError, SetReqError] = useState(false);
   useEffect(() => {
-    window.localStorage.setItem("userId", 1);
     if (window.localStorage.getItem("accessToken")) {
       return;
     }
@@ -136,6 +136,13 @@ const ResgisterAnimal = () => {
     <>
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
       <GridContainer>
+        <HelpDiv>
+          <p>
+            Para cadastrar seu amigo pet, basta preencher o formulário abaixo.
+            Escolha uma foto bem <b>bonitona</b> e preencha os demais campos
+            para ajudar os candidatos a encontrarem seu pet mais fácil
+          </p>
+        </HelpDiv>
         <FormAnimals onSubmit={handleSubmit(handleForm)}>
           <Title>Novo Pet</Title>
           <Img className="preview-img" />
@@ -205,6 +212,9 @@ const ResgisterAnimal = () => {
         </FormAnimals>
         <ShowCase>
           <p>Os seus atuais animais</p>
+          <section>
+            {/* Aqui vai renderizar com os components card coms animais do usuário que está cadastrando */}
+          </section>
         </ShowCase>
       </GridContainer>
     </>
