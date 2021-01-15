@@ -35,6 +35,62 @@ const Header = () => {
           </ContainerButtons>{" "}
         </>
       )}
+      {location.pathname === "/donor" && (
+        <>
+          <span>Menu</span>
+          <ContainerButtons>
+            <Button
+              onClick={() => history.push("/profile")}
+              location={location.pathname}
+              path="/"
+            >
+              Perfil
+            </Button>
+            <Button
+              onClick={() => history.push("/my-animals")}
+              location={location.pathname}
+              path="login"
+            >
+              Seus animais
+            </Button>
+            <Button
+              onClick={() => history.push("/humans")}
+              location={location.pathname}
+              path="register"
+            >
+              Humanos interessados
+            </Button>
+          </ContainerButtons>{" "}
+        </>
+      )}
+      {location.pathname === "/adopter" && (
+        <>
+          <span>Menu</span>
+          <ContainerButtons>
+            <Button
+              onClick={() => history.push("/profile")}
+              location={location.pathname}
+              path="/"
+            >
+              Perfil
+            </Button>
+            <Button
+              onClick={() => history.push("/animals")}
+              location={location.pathname}
+              path="login"
+            >
+              Animais
+            </Button>
+            <Button
+              onClick={() => history.push("/favorites")}
+              location={location.pathname}
+              path="register"
+            >
+              Quero adotar
+            </Button>
+          </ContainerButtons>{" "}
+        </>
+      )}
 
       <Logo />
     </Container>
