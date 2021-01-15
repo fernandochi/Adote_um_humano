@@ -50,6 +50,17 @@ const LoginUser = () => {
             headers: { Authorization: `Bearer ${res.data.accessToken}` },
           })
           .then((res) => {
+            window.localStorage.setItem(
+              "user",
+              `{
+              "name": ${res.data.name},
+              "email": ${res.data.email},
+              "donor": ${res.data.donor},
+              "adress": ${res.data.adress}
+              "id": ${res.data.id},
+            }`
+            );
+            console.log(res.data);
             res.data.donor ? history.push("/donor") : history.push("/grantee");
           });
       })
