@@ -1,15 +1,19 @@
 import Logo from "../logo/index";
-import { Container, ContainerButtons, Button } from "./style";
+import { Container, ContainerButtons, Button, Menu } from "./style";
 import { useLocation, useHistory } from "react-router-dom";
+import MenuMobile from "../menu/index";
 
 const Header = () => {
   const location = useLocation();
   const history = useHistory();
   return (
     <Container>
+      <Menu>
+        <MenuMobile />
+      </Menu>
+
       {location.pathname === "/" && (
         <>
-          <span>Menu</span>
           <ContainerButtons>
             <Button
               onClick={() => history.push("/")}

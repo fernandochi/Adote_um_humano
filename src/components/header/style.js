@@ -47,4 +47,10 @@ const Button = styled.button`
   }
 `;
 
-export { Container, ContainerButtons, Button };
+const Menu = styled.div`
+  @media (min-width: 700px) {
+    display: none;
+  }
+`;
+
+export { Container, ContainerButtons, Button, Menu };
