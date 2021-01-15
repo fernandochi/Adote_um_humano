@@ -1,16 +1,40 @@
 import styled from "styled-components";
 
-import BackgroundImage3 from "../../assets/img/Background3.png";
-
-const Container = styled.div`
+const WhiteBox = styled.div`
   width: 100vw;
   height: 100vh;
-  color: white;
-  background-image: url(${BackgroundImage3});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  font-family: "Amatic SC", cursive;
+  font-family: "Roboto", sans-serif;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+
+  @media (min-width: 768px) {
+    padding-top: 50px;
+  }
+
+  @media (min-width: 1100px) {
+    padding-top: 100px;
+  }
+
+  @media (min-width: 2000px) {
+    padding-top: 175px;
+  }
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+
   @media (min-width: 768px) {
     padding-top: 50px;
   }
@@ -89,4 +113,4 @@ const Link = styled.span`
   }
 `;
 
-export { Container, Title, OrangeBox, Label, Button, Link };
+export { TextBox, Title, OrangeBox, Label, Button, Link };
