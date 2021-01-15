@@ -1,4 +1,4 @@
-import { TextBox, OrangeBox, Title, Label, Button } from "./style";
+import { TextBox, Title, Label, Button } from "./style";
 
 import { useHistory } from "react-router-dom";
 
