@@ -39,6 +39,8 @@ const LoginUser = () => {
     axios
       .post(urlLogin, data)
       .then((res) => {
+        window.localStorage.setItem("accessToken", res.data.accessToken);
+
         const id = jwt.decode(res.data.accessToken).sub;
 
         const urlUser = `https://adote-um-humano.herokuapp.com/users/${id}`;
