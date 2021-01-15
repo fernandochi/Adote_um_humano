@@ -70,12 +70,12 @@ const Input = styled.input`
 `;
 
 const Errors = styled.span`
-  font-size: 9px;
+  font-size: 20px;
   color: #96bb7c;
   font-weight: bolder;
 
   @media (min-width: 700px) {
-    font-size: 14px;
+    font-size: 25px;
   }
 `;
 
