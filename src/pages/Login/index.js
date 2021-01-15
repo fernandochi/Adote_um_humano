@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import jwt from "jsonwebtoken";
@@ -18,6 +19,8 @@ import {
 const LoginUser = () => {
   const history = useHistory();
 
+  const [error, setError] = useState("");
+
   let schema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Campo obrigatório"),
     password: yup
@@ -33,25 +36,43 @@ const LoginUser = () => {
   const handleForm = (data) => {
     const urlLogin = "https://adote-um-humano.herokuapp.com/login";
 
-    axios.post(urlLogin, data).then((res) => {
-      const id = jwt.decode(res.data.accessToken).sub;
+    axios
+      .post(urlLogin, data)
+      .then((res) => {
+        window.localStorage.setItem("accessToken", res.data.accessToken);
 
-      const urlUser = `https://adote-um-humano.herokuapp.com/users/${id}`;
+        const id = jwt.decode(res.data.accessToken).sub;
 
-      axios
-        .get(urlUser, {
-          headers: { Authorization: `Bearer ${res.data.accessToken}` },
-        })
-        .then((res) => {
-          res.data.donor ? history.push("/donor") : history.push("/grantee");
-        });
-    });
+        const urlUser = `https://adote-um-humano.herokuapp.com/users/${id}`;
+
+        axios
+          .get(urlUser, {
+            headers: { Authorization: `Bearer ${res.data.accessToken}` },
+          })
+          .then((res) => {
+            window.localStorage.setItem(
+              "user",
+              `{
+              "name": ${res.data.name},
+              "email": ${res.data.email},
+              "donor": ${res.data.donor},
+              "adress": ${res.data.adress}
+              "id": ${res.data.id},
+            }`
+            );
+            console.log(res.data);
+            res.data.donor ? history.push("/donor") : history.push("/grantee");
+          });
+      })
+      .catch(() => setError("Email/Senha inválida!"));
   };
 
   return (
     <Container>
       <Form onSubmit={handleSubmit(handleForm)}>
         <Title>Login</Title>
+
+        <Errors>{error}</Errors>
 
         <Label htmlFor="email">Email</Label>
         <Input name="email" ref={register} />
