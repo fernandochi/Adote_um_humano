@@ -3,6 +3,7 @@ import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
 import Header from "./components/header/index";
 import Footer from "./components/footer/index";
+import RegisterAnimal from "./pages/AnimalForm";
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         </Route>
         <Route path="/register">
           <RegisterUser />
+        </Route>
+        <Route path="/animal-form">
+          <RegisterAnimal />
         </Route>
       </Switch>
       <Footer />
