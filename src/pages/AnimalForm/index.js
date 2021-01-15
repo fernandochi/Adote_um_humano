@@ -28,10 +28,21 @@ const ResgisterAnimal = () => {
   const history = useHistory();
   const [ImageAnimalResponse, setIAR] = useState({});
   const [ReqError, SetReqError] = useState(false);
+  const [CurrentAnimals, SetCurrentAnimals] = useState([]);
+  const id = window.localStorage.getItem("id") || 1;
   useEffect(() => {
+    window.localStorage.setItem("id", 1);
     if (window.localStorage.getItem("accessToken")) {
       return;
     }
+
+    axios
+      .get(`https://adote-um-humano.herokuapp.com/animals?donorId=${id}`)
+      .then((res) => {
+        console.log(res);
+        SetCurrentAnimals(res.data);
+      })
+      .catch((err) => console.log(err));
     axios
       .post("https://api.imgur.com/oauth2/token", {
         refresh_token: $REFRESH_TOKEN,
@@ -40,7 +51,7 @@ const ResgisterAnimal = () => {
         grant_type: "refresh_token",
       })
       .then((res) => {
-        window.localStorage.setItem("accessToken", res.data.access_token);
+        window.localStorage.setItem("imgToken", res.data.access_token);
       })
       .catch((err) => SetReqError(true));
   }, []);
@@ -75,7 +86,7 @@ const ResgisterAnimal = () => {
     var myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
-      `Bearer ${window.localStorage.getItem("accessToken")}`
+      `Bearer ${window.localStorage.getItem("imgToken")}`
     );
 
     var formdata = new FormData();
@@ -99,18 +110,20 @@ const ResgisterAnimal = () => {
         "https://adote-um-humano.herokuapp.com/animals",
         {
           ...data,
-          donorId: Number(window.localStorage.getItem("userId")),
+          donorId: Number(id),
           avatar: ImageAnimalResponse.link,
           img_ID: ImageAnimalResponse.id,
           deletehash: ImageAnimalResponse.deletehash,
         },
         {
           headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            Authorization: `Bearer ${window.localStorage.getItem(
+              "accessToken"
+            )}`,
           },
         }
       )
-      .then((res) => history.push("/"))
+      .then((res) => history.push("/donor"))
       .catch((err) => SetReqError(true));
   };
 
@@ -213,6 +226,22 @@ const ResgisterAnimal = () => {
         <ShowCase>
           <p>Os seus atuais animais</p>
           <section>
+            {CurrentAnimals.map((item, idx) => {
+              return (
+                <div
+                  style={{
+                    width: "100px",
+                    backgroundColor: "blue",
+                    color: "red",
+                  }}
+                  key={idx}
+                  onClick={(ev) => console.log(item)}
+                >
+                  <p>{item.name}</p>
+                  <p>{item.race}</p>
+                </div>
+              );
+            })}
             {/* Aqui vai renderizar com os components card coms animais do usuário que está cadastrando */}
           </section>
         </ShowCase>
