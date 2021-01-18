@@ -1,18 +1,22 @@
 // STYLE
-import { Card } from "./style";
+import { Card, CardImage, CardInfo } from "./style";
 
-const CardPrimary = ({ animal }) => {
+const CardPrimary = ({ animal, setOpen }) => {
   return (
-    <Card>
-      <div className="side__left">
-        <img src="https://i.pravatar.cc/300" alt="" />
-      </div>
-      <div className="side__right">
-        <span>{animal.name}</span>
-        <span>1 ano</span>
-        <button>Mais informações</button>
-      </div>
-    </Card>
+    <>
+      <Card>
+        <CardImage>
+          <img src={animal.avatar} alt={animal.name} />
+        </CardImage>
+        <CardInfo>
+          <span>{animal.name}</span>
+          <span>
+            {animal.age <= 1 ? `${animal.age} ano` : `${animal.age} anos`}
+          </span>
+          <button onClick={() => setOpen(true)}>Mais informações</button>
+        </CardInfo>
+      </Card>
+    </>
   );
 };
 

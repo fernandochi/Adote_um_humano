@@ -3,12 +3,14 @@ import axios from "axios";
 
 // COMPONENTS
 import CardPrimary from "../../components/CardPrimary";
+import ModalAnimals from "../../components/ModalAnimals";
 
 // STYLE
 import { Container } from "./style";
 
 const Animals = () => {
   const [animals, setAnimals] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const url = "https://adote-um-humano.herokuapp.com/animals";
@@ -19,9 +21,12 @@ const Animals = () => {
     <Container>
       <ul>
         {animals.map((animal, index) => (
-          <CardPrimary key={index} animal={animal} />
+          <li key={index}>
+            <CardPrimary animal={animal} setOpen={setOpen} />
+          </li>
         ))}
       </ul>
+      {open && <ModalAnimals setOpen={setOpen} />}
     </Container>
   );
 };
