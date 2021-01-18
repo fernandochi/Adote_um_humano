@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { editAnimal } from "../../redux/actions";
 import {
   GridContainer,
   Title,
@@ -25,6 +27,7 @@ import PopUpDiv from "./popup.jsx";
 import { $REFRESH_TOKEN, $CLIENT_ID, $CLIENTE_SECRET } from "./dados";
 
 const ResgisterAnimal = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [ImageAnimalResponse, setIAR] = useState({});
   const [ReqError, SetReqError] = useState(false);
@@ -235,7 +238,11 @@ const ResgisterAnimal = () => {
                     color: "red",
                   }}
                   key={idx}
-                  onClick={(ev) => console.log(item)}
+                  onClick={() => {
+                    dispatch(editAnimal(item));
+                    window.localStorage.setItem("animal", JSON.stringify(item));
+                    history.push("/edit-animal");
+                  }}
                 >
                   <p>{item.name}</p>
                   <p>{item.race}</p>
