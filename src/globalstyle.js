@@ -29,12 +29,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-<<<<<<< HEAD
-	
-=======
 	width: 100vw;
 	height: 100vh;
->>>>>>> develop
 }
 ol, ul {
 	list-style: none;

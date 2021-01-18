@@ -19,7 +19,16 @@ const container = {
   },
 };
 
-const Card = ({ img, name, age, onClick, isAnimal, animalName }) => {
+const CardSecondary = ({
+  img,
+  name,
+  contact,
+  phone,
+  address,
+  responsiveForm,
+}) => {
+  let items = [img, name, contact, phone, address, responsiveForm];
+
   return (
     <CardContainer>
       <ImageContainer>
@@ -29,16 +38,14 @@ const Card = ({ img, name, age, onClick, isAnimal, animalName }) => {
         />
       </ImageContainer>
       <InfoContainer>
-        <span>{name}</span>
-        {isAnimal ? (
-          <span>{age > 1 ? `${age} anos` : `${age} ano`}</span>
-        ) : (
-          <span>{`quer adotar ${animalName}`}</span>
-        )}
+        {items.map((item) => {
+          return <span>{item}</span>;
+        })}
+
         <StyledButton onClick={onClick}>Mais informações</StyledButton>
       </InfoContainer>
     </CardContainer>
   );
 };
 
-export default Card;
+export default CardSecondary;
