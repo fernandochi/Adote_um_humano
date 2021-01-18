@@ -32,7 +32,9 @@ const Home = () => {
           including versions of Lorem Ipsum.
         </TextBox>
       </WhiteBox>
+
       <PawAndFeet />
+
       <Footer />
     </Container>
   );
