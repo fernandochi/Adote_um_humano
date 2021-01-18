@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
+import Animals from "./pages/Animals";
 import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
@@ -15,7 +16,9 @@ import imgTest from "./assets/img/306277-min.png";
 const App = () => {
   return (
     <>
+      <Header />
       <Switch>
+<<<<<<< HEAD
         <Route exact path="/">
           <Header />
           <CardSecondary
@@ -27,6 +30,9 @@ const App = () => {
             responsiveForm
           />
         </Route>
+=======
+        <Route exact path="/"></Route>
+>>>>>>> b928e001ba71f31e1a5f8831786f2ef373640ebb
 
         <Route exact path="/login">
           <LoginUser />
@@ -34,6 +40,8 @@ const App = () => {
         <Route path="/register">
           <RegisterUser />
         </Route>
+
+        <Route path="/animals" component={Animals} />
         <Route path="/animal-form">
           <RegisterAnimal />
         </Route>
