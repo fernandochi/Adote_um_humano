@@ -5,6 +5,7 @@ import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
 import Error404 from "./pages/Error404";
+import AdopterProfile from "./pages/AdopterProfile";
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
         </Route>
         <Route path="/animal-form">
           <RegisterAnimal />
+        </Route>
+        <Route path="/adopter">
+          <AdopterProfile />
         </Route>
         <Route>
           <Error404 />

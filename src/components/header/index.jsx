@@ -39,12 +39,40 @@ const Header = () => {
           </ContainerButtons>{" "}
         </>
       )}
+
+      {location.pathname === "/animals" && (
+        <>
+          <ContainerButtons>
+            <Button
+              onClick={() => history.push("/")}
+              location={location.pathname}
+              path="/"
+            >
+              Home
+            </Button>
+            <Button
+              onClick={() => history.push("/login")}
+              location={location.pathname}
+              path="login"
+            >
+              Login
+            </Button>
+            <Button
+              onClick={() => history.push("/register")}
+              location={location.pathname}
+              path="register"
+            >
+              Cadastro
+            </Button>
+          </ContainerButtons>{" "}
+        </>
+      )}
       {location.pathname === "/donor" && (
         <>
           <span>Menu</span>
           <ContainerButtons>
             <Button
-              onClick={() => history.push("/profile")}
+              onClick={() => history.push("/donor")}
               location={location.pathname}
               path="/"
             >
@@ -72,9 +100,9 @@ const Header = () => {
           <span>Menu</span>
           <ContainerButtons>
             <Button
-              onClick={() => history.push("/profile")}
+              onClick={() => history.push("/adopter")}
               location={location.pathname}
-              path="/"
+              path="/adopter"
             >
               Perfil
             </Button>
