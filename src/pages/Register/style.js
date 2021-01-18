@@ -41,9 +41,9 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-  font-size: 16px;
+  font-size: 1em;
   @media (min-width: 700px) {
-    font-size: 20px;
+    font-size: 1.25em;
   }
 `;
 
@@ -317,6 +317,7 @@ const ShowCase = styled.div`
 `;
 
 const FormAnimals = styled(Form)`
+  font-size: 1.25rem;
   width: 90vw;
   margin: 0 auto;
   height: initial;
