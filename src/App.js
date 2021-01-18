@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
 import RegisterAnimal from "./pages/AnimalForm";
+import Error404 from "./pages/Error404";
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route path="/animal-form">
           <RegisterAnimal />
+        </Route>
+        <Route>
+          <Error404 />
         </Route>
       </Switch>
     </>
