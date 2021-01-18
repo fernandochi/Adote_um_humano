@@ -25,6 +25,7 @@ import {
 } from "../Register/style";
 import PopUpDiv from "./popup.jsx";
 import { $REFRESH_TOKEN, $CLIENT_ID, $CLIENTE_SECRET } from "./dados";
+import Header from "../../components/header";
 
 const ResgisterAnimal = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,8 @@ const ResgisterAnimal = () => {
   const [ImageAnimalResponse, setIAR] = useState({});
   const [ReqError, SetReqError] = useState(false);
   const [CurrentAnimals, SetCurrentAnimals] = useState([]);
-  const id = window.localStorage.getItem("id") || 1;
+  const id = window.localStorage.getItem("id");
   useEffect(() => {
-    window.localStorage.setItem("id", 1);
-    if (window.localStorage.getItem("accessToken")) {
-      return;
-    }
-
     axios
       .get(`https://adote-um-humano.herokuapp.com/animals?donorId=${id}`)
       .then((res) => {
@@ -46,6 +42,10 @@ const ResgisterAnimal = () => {
         SetCurrentAnimals(res.data);
       })
       .catch((err) => console.log(err));
+    if (window.localStorage.getItem("imgToken")) {
+      return;
+    }
+
     axios
       .post("https://api.imgur.com/oauth2/token", {
         refresh_token: $REFRESH_TOKEN,
@@ -150,6 +150,7 @@ const ResgisterAnimal = () => {
 
   return (
     <>
+      <Header />
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
       <GridContainer>
         <HelpDiv>
