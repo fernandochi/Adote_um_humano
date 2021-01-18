@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PawAndFeetImg from "../../assets/img/Paw-and-Feet.png";
 
 const Container = styled.div`
   width: 100vw;
@@ -15,14 +14,39 @@ const Container = styled.div`
 const WhiteBox = styled.div`
   width: 275px;
   height: 287px;
-  left: 60px;
-  top: 73px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    width: 380px;
+    height: 295px;
+    align-items: center;
+    margin-right: 15px;
+    padding: 25px 25px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (min-width: 1024px) {
+    width: 380px;
+    height: 295px;
+    align-items: center;
+    margin-right: 10vw;
+    padding: 25px 25px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 const PawAndFeet = styled.img`
-  src: ${PawAndFeetImg};
-  width: 300px;
-  height: 300px;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    alt: "Animals paws and Humans Feet forming a way";
+    width: 350px;
+    height: 200px;
+  }
 `;
 
 const TextBox = styled.div`

@@ -7,7 +7,7 @@ import {
   Label,
   Button,
 } from "./style";
-
+import PawAndFeetImg from "../../assets/img/Paw-and-Feet.png";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
@@ -33,7 +33,7 @@ const Home = () => {
         </TextBox>
       </WhiteBox>
 
-      <PawAndFeet />
+      <PawAndFeet src={PawAndFeetImg} />
 
       <Footer />
     </Container>
