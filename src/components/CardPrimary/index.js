@@ -1,3 +1,6 @@
+// IMAGE
+import AnimalNotFound from "../../assets/img/not_found.jpg";
+
 // STYLE
 import { Card, CardImage, CardInfo } from "./style";
 
@@ -6,7 +9,10 @@ const CardPrimary = ({ animal, setOpen }) => {
     <>
       <Card>
         <CardImage>
-          <img src={animal.avatar} alt={animal.name} />
+          <img
+            src={animal.avatar ? animal.avatar : AnimalNotFound}
+            alt={animal.name}
+          />
         </CardImage>
         <CardInfo>
           <span>{animal.name}</span>

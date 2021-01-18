@@ -15,7 +15,7 @@ export const ModalContainer = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
   }
 `;
 
@@ -28,6 +28,7 @@ export const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 5px;
 `;
 
 export const ModalHeader = styled.div`
@@ -77,7 +78,7 @@ export const ModalContent = styled.div`
 export const ModalFooter = styled.div`
   height: 80px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   button {
