@@ -46,16 +46,17 @@ const ResponsibleForm = () => {
     axios
       .put(
         url,
-        { ...sendData },
+        { sendData },
         {
           headers: {
-            Authorization: window.localStorage.getItem("authToken"),
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlhaWFhYWFhYUBnbWFpbC5jb20iLCJpYXQiOjE2MTA2NDg0NTUsImV4cCI6MTYxMDY1MjA1NSwic3ViIjoiNSJ9.X76H4zptlZWhpb1UbgRVa2kC7ogusiEDCdQZbuHv-rE",
           },
         }
       )
       .then((res) => history.push("/animals"));
-    console.log(data);
   };
+
   return (
     <Container>
       <Form onSubmit={handleSubmit(handleForm)}>
