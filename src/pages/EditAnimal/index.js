@@ -20,6 +20,17 @@ import {
   Errors,
 } from "../Register/style";
 import PopUpDiv from "../AnimalForm/popup.jsx";
+import styled from "styled-components";
+
+const BackgroundDivColor = styled.div`
+  background-color: #d6efc7;
+  min-height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-family: "Amatic SC", cursive;
+`;
 
 const EditAnimal = () => {
   const history = useHistory();
@@ -27,7 +38,6 @@ const EditAnimal = () => {
   const [ImageAnimalResponse, setIAR] = useState({});
   const [ReqError, SetReqError] = useState(false);
   const id = window.localStorage.getItem("id") || 1;
-  const selector = useSelector((state) => state.animal);
   const [AnimalCurrentEditing, setACE] = useState(
     JSON.parse(window.localStorage.getItem("animal"))
   );
@@ -51,13 +61,13 @@ const EditAnimal = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (data) => {
+  const handleForm = async (data) => {
+    data.donorId = AnimalCurrentEditing.donorId;
+    data.img_ID = AnimalCurrentEditing.img_ID;
+    data.deletehash = AnimalCurrentEditing.deletehash;
     if (data.avatar.length === 0) {
       data.avatar = AnimalCurrentEditing.avatar;
-      data.donorId = AnimalCurrentEditing.donorId;
-      data.img_ID = AnimalCurrentEditing.img_ID;
-      data.deletehash = AnimalCurrentEditing.deletehash;
-      axios
+      return axios
         .put(
           `https://adote-um-humano.herokuapp.com/animals/${AnimalCurrentEditing.id}`,
 
@@ -71,49 +81,53 @@ const EditAnimal = () => {
             },
           }
         )
-        .then((res) => console.log("Atualizou"))
+        .then((res) => history.push("/donor"))
         .catch((err) => SetReqError(true));
     }
 
     console.log(data);
     var myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      `Bearer ${window.localStorage.getItem("imgToken")}`
-    );
+    myHeaders.append("Authorization", `Client-ID 511f1ba99da58a2`);
 
     var formdata = new FormData();
     formdata.append("image", data.avatar[0]);
 
-    // var requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: formdata,
-    //   redirect: "follow",
-    // };
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
 
-    // await fetch("https://api.imgur.com/3/image", requestOptions)
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     setIAR(result.data);
-    //   })
-    //   .catch((error) => SetReqError(true));
-    // await axios
-    //   .put(
-    //     `https://adote-um-humano.herokuapp.com/animals/${AnimalCurrentEditing.id}`,
+    await fetch("https://api.imgur.com/3/image", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setIAR(result.data);
+      })
+      .catch((error) => SetReqError(true));
+    await axios
+      .put(
+        `https://adote-um-humano.herokuapp.com/animals/${AnimalCurrentEditing.id}`,
 
-    //     data,
+        {
+          ...data,
+          donorId: Number(id),
+          avatar: ImageAnimalResponse.link,
+          img_ID: ImageAnimalResponse.id,
+          deletehash: ImageAnimalResponse.deletehash,
+        },
 
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${window.localStorage.getItem(
-    //           "accessToken"
-    //         )}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => history.push("/donor"))
-    //   .catch((err) => SetReqError(true));
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem(
+              "accessToken"
+            )}`,
+          },
+        }
+      )
+      .then((res) => history.push("/donor"))
+      .catch((err) => SetReqError(true));
   };
 
   const handleCloseInfo = () => {
@@ -135,7 +149,7 @@ const EditAnimal = () => {
   };
 
   return (
-    <>
+    <BackgroundDivColor>
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
 
       <FormAnimals onSubmit={handleSubmit(handleForm)}>
@@ -280,7 +294,7 @@ const EditAnimal = () => {
         />
         <Button type="submit">Cadastrar pet</Button>
       </FormAnimals>
-    </>
+    </BackgroundDivColor>
   );
 };
 

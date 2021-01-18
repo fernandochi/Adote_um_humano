@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import "./style.css";
+import styled, { keyframes } from "styled-components";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
@@ -165,7 +164,7 @@ const PopUp = styled.div`
     ". . close"
     ". msg ."
     ". . button";
-  ${(props) => props.isVisible && "animation: popup 1s"}
+  ${(props) => props.isVisible && `animation: ${popup} 1s`}
 `;
 
 const ExteriorDiv = styled.div`
@@ -179,7 +178,7 @@ const ExteriorDiv = styled.div`
   ::after {
     opacity: initial;
   }
-  ${(props) => props.isVisible && "animation: exterior 1s"}
+  ${(props) => props.isVisible && `animation: ${exterior} 1s`}
 `;
 const TextDiv = styled.div`
   display: flex;
@@ -348,6 +347,32 @@ const HelpDiv = styled.div`
 
   @media (min-width: 1000px) {
     grid-area: help;
+  }
+`;
+
+const exterior = keyframes`
+ 0% {
+    background-color: red;
+    opacity: 0;
+  }
+  80% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: #333;
+    opacity: 0.8;
+  }
+`;
+
+const popup = keyframes`
+ from {
+    top: -8rem;
+    opacity: 0;
+  }
+  to {
+    top: 4rem;
+    opacity: 1;
   }
 `;
 export {
