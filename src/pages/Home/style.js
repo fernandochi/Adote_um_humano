@@ -1,51 +1,36 @@
 import styled from "styled-components";
+import PawAndFeetImg from "../../assets/img/Paw-and-Feet.png";
 
-const WhiteBox = styled.div`
+const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  font-family: "Roboto", sans-serif;
-  color: black;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
+  align-content: space-between;
+  flex-wrap: wrap;
+`;
 
-  @media (min-width: 768px) {
-    padding-top: 50px;
-  }
+const WhiteBox = styled.div`
+  width: 275px;
+  height: 287px;
+  left: 60px;
+  top: 73px;
+`;
 
-  @media (min-width: 1100px) {
-    padding-top: 100px;
-  }
-
-  @media (min-width: 2000px) {
-    padding-top: 175px;
-  }
+const PawAndFeet = styled.img`
+  src: ${PawAndFeetImg};
+  width: 300px;
+  height: 300px;
 `;
 
 const TextBox = styled.div`
-  width: 100%;
-  height: 100%;
-  font-family: "Roboto", sans-serif;
-  color: black;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-
-  @media (min-width: 768px) {
-    padding-top: 50px;
-  }
-
-  @media (min-width: 1100px) {
-    padding-top: 100px;
-  }
-
-  @media (min-width: 2000px) {
-    padding-top: 175px;
-  }
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: #000000;
 `;
 
 const Title = styled.h1`
@@ -113,4 +98,14 @@ const Link = styled.span`
   }
 `;
 
-export { TextBox, Title, OrangeBox, Label, Button, Link };
+export {
+  WhiteBox,
+  Container,
+  PawAndFeet,
+  TextBox,
+  Title,
+  OrangeBox,
+  Label,
+  Button,
+  Link,
+};
