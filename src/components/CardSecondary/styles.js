@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { BsListCheck } from "react-icons/bs";
 
 export const CardContainer = styled.div`
-  width: 300px;
+  width: 400px;
   height: 200px;
   margin: 20px;
   border-radius: 10px;
@@ -12,7 +13,7 @@ export const CardContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 50%;
+  width: 40%;
   height: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -20,16 +21,15 @@ export const ImageContainer = styled.div`
   justify-content: center;
 
   img {
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    width: 70%;
+    height: 60%;
+    border-radius: 50%;
     /* border: 4px solid orange; */
   }
 `;
 
 export const InfoContainer = styled.div`
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -38,10 +38,23 @@ export const InfoContainer = styled.div`
   color: #fff;
 `;
 
+export const FormCheck = styled(BsListCheck)`
+  width: 25px;
+  height: 25px;
+  color: white;
+  justify-self: flex-end;
+`;
+
 export const StyledButton = styled.div`
   background-color: #96bb7c;
   line-height: 2rem;
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
+`;
+
+export const StyledSpam = styled.span`
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
 `;

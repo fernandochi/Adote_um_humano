@@ -3,31 +3,33 @@ import {
   ImageContainer,
   InfoContainer,
   StyledButton,
+  FormCheck,
+  StyledSpam,
 } from "./styles";
+import { BsListCheck } from "react-icons/bs";
 
-import { motion } from "framer-motion";
+// const item = {
+//   hidden: { y: 20, opacity: 0 },
+//   visible: { y: 0, opacity: 1 },
+// };
 
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
-
-const container = {
-  transition: {
-    delayChildren: 0.3,
-    straggerChildren: 0.2,
-  },
-};
+// const container = {
+//   transition: {
+//     delayChildren: 0.3,
+//     straggerChildren: 0.2,
+//   },
+// };
 
 const CardSecondary = ({
   img,
   name,
-  contact,
+  email,
   phone,
   address,
   responsiveForm,
+  onClick,
 }) => {
-  let items = [img, name, contact, phone, address, responsiveForm];
+  let items = [name, email, phone, address];
 
   return (
     <CardContainer>
@@ -39,10 +41,14 @@ const CardSecondary = ({
       </ImageContainer>
       <InfoContainer>
         {items.map((item) => {
-          return <span>{item}</span>;
+          return <StyledSpam>{item}</StyledSpam>;
         })}
 
-        <StyledButton onClick={onClick}>Mais informações</StyledButton>
+        {responsiveForm && (
+          <a href="#">
+            <FormCheck />
+          </a>
+        )}
       </InfoContainer>
     </CardContainer>
   );
