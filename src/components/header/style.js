@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.h1`
+const Container = styled.div`
   width: 100%;
   height: 50px;
   background-color: #d6efc7;
