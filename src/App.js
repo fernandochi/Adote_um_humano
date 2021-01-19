@@ -5,8 +5,9 @@ import Animals from "./pages/Animals";
 import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
+import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
-import EditProfile from "./pages/EditProfile";
+import EditProfilePage from "./pages/EditProfile";
 
 const App = () => {
   return (
@@ -23,11 +24,14 @@ const App = () => {
         </Route>
 
         <Route path="/animals" component={Animals} />
-        <Route path="/animal-form">
+        <Route path="/donor/animal-form">
           <RegisterAnimal />
         </Route>
         <Route path="/edit-profile">
-          <EditProfile />
+          <EditProfilePage />
+        </Route>
+        <Route path="/donor/edit-animal">
+          <EditAnimal />
         </Route>
         <Route>
           <Error404 />
