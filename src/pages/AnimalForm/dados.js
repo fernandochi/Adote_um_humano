@@ -1,3 +1,0 @@
-export const $REFRESH_TOKEN = "8ef8f8430d07c812e1a3464c117149088e2977e3";
-export const $CLIENT_ID = "511f1ba99da58a2";
-export const $CLIENTE_SECRET = "91604d541c1861443eb98957efc9597365c8fd4a";
