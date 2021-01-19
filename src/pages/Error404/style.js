@@ -41,4 +41,7 @@ export const ImgDiv = styled.div`
   width: 80vw;
   max-width: 600px;
   padding: 8px;
+  > img {
+    width: 45%;
+  }
 `;
