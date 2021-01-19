@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
+import Animals from "./pages/Animals";
 import RegisterAnimal from "./pages/AnimalForm";
 import Error404 from "./pages/Error404";
 
@@ -20,6 +21,8 @@ const App = () => {
         <Route exact path="/register">
           <RegisterUser />
         </Route>
+
+        <Route path="/animals" component={Animals} />
         <Route path="/animal-form">
           <RegisterAnimal />
         </Route>
