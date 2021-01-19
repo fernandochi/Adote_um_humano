@@ -13,18 +13,15 @@ const CardSecondary = ({ user }) => {
     <>
       <CardContainer>
         <ImageContainer>
-          <img
-            src="https://urbanarts.vteximg.com.br/arquivos/ids/2605780/120021.jpg?v=637184028084430000"
-            alt="princess"
-          />
+          <img src={user.avatar} alt="user" />
         </ImageContainer>
-        <InfoContainer>
+        <InfoContainer key={user.id}>
           {user.map((user) => (
             <>
-              <StyledSpam>{user.name}</StyledSpam>
-              <StyledSpam>{user.email}</StyledSpam>
-              <StyledSpam>{user.contact}</StyledSpam>
-              <StyledSpam>{user.address}</StyledSpam>
+              <StyledSpam key={user.name}>{user.name}</StyledSpam>
+              <StyledSpam key={user.email}>{user.email}</StyledSpam>
+              <StyledSpam key={user.contact}>{user.contact}</StyledSpam>
+              <StyledSpam key={user.address}>{user.address}</StyledSpam>
             </>
           ))}
           {/* 

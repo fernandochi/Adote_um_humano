@@ -73,21 +73,21 @@ const Header = () => {
             <Button
               onClick={() => history.push("/donor")}
               location={location.pathname}
-              path="/"
+              path="/donor"
             >
               Perfil
             </Button>
             <Button
               onClick={() => history.push("/my-animals")}
               location={location.pathname}
-              path="login"
+              path="my-animals"
             >
               Seus animais
             </Button>
             <Button
               onClick={() => history.push("/humans")}
               location={location.pathname}
-              path="register"
+              path="humans"
             >
               Humanos interessados
             </Button>

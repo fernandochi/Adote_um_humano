@@ -6,7 +6,7 @@ import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
 import Error404 from "./pages/Error404";
-import AdopterProfile from "./pages/AdopterProfile/index";
+import Profile from "./pages/Profile/index";
 
 const App = () => {
   return (
@@ -25,7 +25,10 @@ const App = () => {
           <RegisterAnimal />
         </Route>
         <Route path="/adopter">
-          <AdopterProfile />
+          <Profile />
+        </Route>
+        <Route path="/donor">
+          <Profile />
         </Route>
         <Route>
           <Error404 />
