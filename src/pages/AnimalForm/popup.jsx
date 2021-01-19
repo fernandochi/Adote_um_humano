@@ -1,5 +1,5 @@
 import { PopUp, ExteriorDiv, TextDiv, CloseDiv } from "../Register/style";
-
+import { MdClose } from "react-icons/md";
 const PopUpDiv = ({ isVisible, closeInfo }) => {
   return (
     <>
@@ -10,7 +10,7 @@ const PopUpDiv = ({ isVisible, closeInfo }) => {
           cadastrar seu pet, por favor, tente mais tarde
         </TextDiv>
         <CloseDiv onClick={closeInfo}>
-          <p>Fechar</p>
+          <MdClose />
         </CloseDiv>
       </PopUp>
     </>

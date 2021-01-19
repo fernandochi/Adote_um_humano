@@ -1,10 +1,18 @@
 import EditProfile from "../../components/EditProfile";
-import { GridContainer } from "../../components/EditProfile/style";
+import { GridEdit } from "../../components/EditProfile/style";
+import PopUpDiv from "../AnimalForm/popup";
+import { useState } from "react";
 const EditProfilePage = () => {
+  const [ReqError, SetReqError] = useState(false);
+
+  const handleCloseInfo = () => {
+    SetReqError(false);
+  };
   return (
-    <GridContainer>
+    <GridEdit>
+      <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
       <EditProfile />
-    </GridContainer>
+    </GridEdit>
   );
 };
 

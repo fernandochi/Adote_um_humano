@@ -16,7 +16,7 @@ import ImgPreview from "../ImgPreview";
 import AnimalNotFound from "../../assets/img/not_found.jpg";
 const bcrypt = require("bcryptjs");
 
-const EditProfile = () => {
+const EditProfile = ({ ReqError, SetReqError }) => {
   const [user, setUser] = useState({});
   const [changePassword, setChangePassword] = useState(true);
   const history = useHistory();
@@ -102,7 +102,8 @@ const EditProfile = () => {
             return history.push("/donor");
           }
           history.push("/adopter");
-        });
+        })
+        .catch(() => SetReqError(true));
     }
 
     var myHeaders = new Headers();
@@ -125,7 +126,7 @@ const EditProfile = () => {
         data.img_ID = result.data.id;
         data.deletehash = result.data.deletehash;
       })
-      .catch((error) => console.log(error));
+      .catch((error) => SetReqError(true));
 
     axios
       .patch(url, data, {
@@ -138,7 +139,8 @@ const EditProfile = () => {
           return history.push("/donor");
         }
         history.push("/adopter");
-      });
+      })
+      .catch(() => SetReqError(true));
   };
 
   return (
