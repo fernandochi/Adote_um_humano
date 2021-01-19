@@ -6,6 +6,10 @@ import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
 import Error404 from "./pages/Error404";
+<<<<<<< HEAD
+=======
+import AdopterProfile from "./pages/AdopterProfile/index";
+>>>>>>> origin/feat/dashboardProfile
 
 const App = () => {
   return (
@@ -13,17 +17,22 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/"></Route>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feat/dashboardProfile
         <Route exact path="/login">
           <LoginUser />
         </Route>
         <Route path="/register">
           <RegisterUser />
         </Route>
-
         <Route path="/animals" component={Animals} />
         <Route path="/animal-form">
           <RegisterAnimal />
+        </Route>
+        <Route path="/adopter">
+          <AdopterProfile />
         </Route>
         <Route>
           <Error404 />
