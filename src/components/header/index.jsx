@@ -23,6 +23,7 @@ const Header = () => {
               Home
             </Button>
             <Button
+              data-testid="login"
               onClick={() => history.push("/login")}
               location={location.pathname}
               path="login"
@@ -30,6 +31,7 @@ const Header = () => {
               Login
             </Button>
             <Button
+              data-testid="register"
               onClick={() => history.push("/register")}
               location={location.pathname}
               path="register"
