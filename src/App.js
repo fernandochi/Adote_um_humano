@@ -5,6 +5,7 @@ import Animals from "./pages/Animals";
 import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
+import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
 import Profile from "./pages/Profile/index";
 
@@ -21,7 +22,7 @@ const App = () => {
           <RegisterUser />
         </Route>
         <Route path="/animals" component={Animals} />
-        <Route path="/animal-form">
+        <Route path="/donor/animal-form">
           <RegisterAnimal />
         </Route>
         <Route path="/adopter">
@@ -29,6 +30,9 @@ const App = () => {
         </Route>
         <Route path="/donor">
           <Profile />
+        </Route>
+        <Route path="/donor/edit-animal">
+          <EditAnimal />
         </Route>
         <Route>
           <Error404 />
