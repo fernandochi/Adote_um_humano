@@ -69,7 +69,6 @@ const Header = () => {
       )}
       {location.pathname === "/donor" && (
         <>
-          <span>Menu</span>
           <ContainerButtons>
             <Button
               onClick={() => history.push("/donor")}
@@ -97,26 +96,25 @@ const Header = () => {
       )}
       {location.pathname === "/adopter" && (
         <>
-          <span>Menu</span>
           <ContainerButtons>
             <Button
-              onClick={() => history.push("/adopter")}
+              onClick={() => history.push("/adopter/profile")}
               location={location.pathname}
               path="/adopter"
             >
               Perfil
             </Button>
             <Button
-              onClick={() => history.push("/animals")}
+              onClick={() => history.push("/adopter/animals")}
               location={location.pathname}
-              path="login"
+              path="animals"
             >
               Animais
             </Button>
             <Button
-              onClick={() => history.push("/favorites")}
+              onClick={() => history.push("/adopter/favorites")}
               location={location.pathname}
-              path="register"
+              path="favorites"
             >
               Quero adotar
             </Button>

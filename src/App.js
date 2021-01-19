@@ -14,19 +14,17 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/"></Route>
-
         <Route exact path="/login">
           <LoginUser />
         </Route>
         <Route path="/register">
           <RegisterUser />
         </Route>
-
         <Route path="/animals" component={Animals} />
         <Route path="/animal-form">
           <RegisterAnimal />
         </Route>
-        <Route path="adopter">
+        <Route path="/adopter">
           <AdopterProfile />
         </Route>
         <Route>

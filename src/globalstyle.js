@@ -32,6 +32,7 @@ body {
 	line-height: 1;
 	width: 100%;
 	height: 100vh;
+	overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;

@@ -1,12 +1,12 @@
+import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import CardSecondary from "../../components/CardSecondary";
 
 const AdopterProfile = () => {
   const [user, setUser] = useState([]);
   const id = window.localStorage.getItem("id");
   const token = window.localStorage.getItem("accessToken");
-
-  console.log(id);
 
   const getData = async () => {
     const { data } = await axios.get(
@@ -25,17 +25,15 @@ const AdopterProfile = () => {
     getData();
   }, []);
   return (
-    <>
-      {user.map((user, index) => (
-        <div key={index}>
-          <div>{user.name}</div>
-          <div>{user.email}</div>
-          <div>{user.contact}</div>
-          <div>{user.address}</div>{" "}
-        </div>
-      ))}
-    </>
+    <Container>
+      <CardSecondary user={user} />
+    </Container>
   );
 };
 
 export default AdopterProfile;
+
+const Container = styled.div`
+  width: 100%;
+  min-height: 80vh;
+`;
