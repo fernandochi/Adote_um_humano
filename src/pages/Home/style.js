@@ -11,6 +11,22 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
+const Conteudo = styled.div`
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ParteOne = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 5vw;
+`;
+
 const WhiteBox = styled.div`
   width: 275px;
   height: 287px;
@@ -42,7 +58,7 @@ const WhiteBox = styled.div`
 const PawAndFeet = styled.img`
   display: none;
   @media (min-width: 768px) {
-    display: block;
+    display: flex;
     alt: "Animals paws and Humans Feet forming a way";
     width: 350px;
     height: 200px;
@@ -132,4 +148,6 @@ export {
   Label,
   Button,
   Link,
+  Conteudo,
+  ParteOne,
 };

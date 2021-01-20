@@ -4,6 +4,7 @@ import RegisterUser from "./pages/Register";
 import LoginUser from "./pages/Login";
 import Animals from "./pages/Animals";
 import RegisterAnimal from "./pages/AnimalForm";
+import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
 
 const App = () => {
@@ -23,8 +24,11 @@ const App = () => {
         </Route>
 
         <Route path="/animals" component={Animals} />
-        <Route path="/animal-form">
+        <Route path="/donor/animal-form">
           <RegisterAnimal />
+        </Route>
+        <Route path="/donor/edit-animal">
+          <EditAnimal />
         </Route>
         <Route>
           <Error404 />
