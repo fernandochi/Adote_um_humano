@@ -10,7 +10,7 @@ import {
 import PawAndFeetImg from "../../assets/img/Paw-and-Feet.png";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Carrossel from "../../components/carrossel/index.js";
+import Carrossel from "../../components/carousel/index.js";
 import { useHistory } from "react-router-dom";
 
 const Home = () => {
