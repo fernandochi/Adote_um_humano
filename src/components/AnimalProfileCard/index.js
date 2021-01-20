@@ -9,13 +9,22 @@ import {
   Button,
 } from "./style";
 import { useLocation, useHistory } from "react-router-dom";
+import { useState } from "react";
 import Subscribe from "../SubscribeButton";
+import Notification from "../notification/index";
 
 const AnimalCard = ({ animal }) => {
   const history = useHistory();
   const location = useLocation();
+  const [added, setAdded] = useState(false);
+
+  setTimeout(() => {
+    setAdded(false);
+  }, 5000);
+
   return (
     <Container>
+      <Notification added={added} />
       <Card>
         {animal.map((animal, index) => (
           <>
@@ -49,7 +58,7 @@ const AnimalCard = ({ animal }) => {
           Editar Perfil
         </Button>
       ) : (
-        <Button>
+        <Button onClick={() => setAdded(true)}>
           <Subscribe />
         </Button>
       )}

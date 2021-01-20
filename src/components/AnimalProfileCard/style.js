@@ -12,6 +12,7 @@ const Card = styled.div`
   background-color: #184d47;
   color: white;
   border-radius: 10px;
+  box-shadow: 2px 3px 5px 0px rgba(115, 115, 115, 0.75);
 
   @media (min-width: 700px) {
     width: 50%;
@@ -78,6 +79,7 @@ const Button = styled.button`
   text-transform: uppercase;
   color: white;
   background-color: #96bb7c;
+  box-shadow: 2px 3px 5px 0px rgba(115, 115, 115, 0.75);
   :hover {
     background-color: #6c8759;
     cursor: pointer;
