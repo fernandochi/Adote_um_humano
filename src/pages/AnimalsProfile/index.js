@@ -2,8 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AnimalCard from "../../components/AnimalProfileCard";
-import Header from "../../components/header/index";
-import Footer from "../../components/footer/index";
 
 const AnimalsProfile = () => {
   const { id } = useParams();
@@ -28,9 +26,7 @@ const AnimalsProfile = () => {
 
   return (
     <>
-      <Header />
       <AnimalCard animal={animal} />
-      <Footer />
     </>
   );
 };
