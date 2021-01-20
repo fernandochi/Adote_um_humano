@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+
 // STYLE
 import { MdClose } from "react-icons/md";
 import {
@@ -9,6 +11,8 @@ import {
 } from "./style";
 
 const ModalAnimals = ({ setOpen }) => {
+  const history = useHistory();
+
   return (
     <ModalContainer>
       <Modal>
@@ -24,8 +28,8 @@ const ModalAnimals = ({ setOpen }) => {
           </h2>
         </ModalContent>
         <ModalFooter>
-          <button>Login</button>
-          <button>Registro</button>
+          <button onClick={() => history.push("/login")}>Login</button>
+          <button onClick={() => history.push("/register")}>Registro</button>
         </ModalFooter>
       </Modal>
     </ModalContainer>

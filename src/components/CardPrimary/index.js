@@ -1,3 +1,6 @@
+// COMPONENTS
+import ButtonAnimals from "../ButtonAnimals";
+
 // IMAGE
 import AnimalNotFound from "../../assets/img/not_found.jpg";
 
@@ -19,7 +22,7 @@ const CardPrimary = ({ animal, setOpen }) => {
           <span>
             {animal.age <= 1 ? `${animal.age} ano` : `${animal.age} anos`}
           </span>
-          <button onClick={() => setOpen(true)}>Mais informações</button>
+          <ButtonAnimals setOpen={setOpen} id={animal.id} />
         </CardInfo>
       </Card>
     </>
