@@ -1,1 +1,3 @@
 export const EDIT_ANIMAL = "EDIT_ANIMAL";
+export const USER_AUTHENTICATED = "USER_AUTHENTICATED";
+export const IS_DONOR = "IS_DONOR";

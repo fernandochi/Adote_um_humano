@@ -11,7 +11,7 @@ const EditProfilePage = () => {
   return (
     <GridEdit>
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
-      <EditProfile />
+      <EditProfile SetReqError={SetReqError} />
     </GridEdit>
   );
 };

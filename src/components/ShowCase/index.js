@@ -33,12 +33,12 @@ const ShowCaseComponent = () => {
       <section>
         {CurrentAnimals.map((item, idx) => {
           return (
-            <>
-              <CardPrimary key={idx} animal={item} />
+            <section key={idx}>
+              <CardPrimary animal={item} />
               <EditDiv onClick={() => Edit(item)}>
                 <EditIcon />
               </EditDiv>
-            </>
+            </section>
           );
         })}
       </section>
