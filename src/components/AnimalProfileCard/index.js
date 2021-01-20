@@ -9,6 +9,7 @@ import {
   Button,
 } from "./style";
 import { useLocation, useHistory } from "react-router-dom";
+import Subscribe from "../SubscribeButton";
 
 const AnimalCard = ({ animal }) => {
   const history = useHistory();
@@ -43,9 +44,13 @@ const AnimalCard = ({ animal }) => {
           </>
         ))}
       </Card>
-      {location.pathname === "/donor/animal/:id" && (
+      {location.pathname === "/donor/animal/:id" ? (
         <Button onClick={() => history.push("/donor/edit-animal")}>
           Editar Perfil
+        </Button>
+      ) : (
+        <Button>
+          <Subscribe />
         </Button>
       )}
     </Container>

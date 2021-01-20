@@ -65,15 +65,16 @@ const Observations = styled.div`
 `;
 
 const Button = styled.button`
-  margin-left: 35%;
+  margin-left: 40%;
   margin-bottom: 5%;
   border: none;
   outline: none;
   border-radius: 5px;
-  height: 24px;
+  height: 30px;
   width: 90px;
   font-weight: bold;
   font-size: 18px;
+  padding: 5px;
   text-transform: uppercase;
   color: white;
   background-color: #96bb7c;
@@ -91,7 +92,7 @@ const Button = styled.button`
     margin-left: 45%;
   }
 
-  @media (min-width: 100px) {
+  @media (min-width: 1000px) {
     margin-left: 48%;
   }
 `;
