@@ -6,10 +6,8 @@ import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
 import Error404 from "./pages/Error404";
-<<<<<<< HEAD
-=======
 import AdopterProfile from "./pages/AdopterProfile/index";
->>>>>>> origin/feat/dashboardProfile
+import MyAnimals from "./pages/MyAnimals";
 
 const App = () => {
   return (
@@ -17,10 +15,6 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/"></Route>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/feat/dashboardProfile
         <Route exact path="/login">
           <LoginUser />
         </Route>
@@ -34,6 +28,7 @@ const App = () => {
         <Route path="/adopter">
           <AdopterProfile />
         </Route>
+        <Route path="/MyAnimals" component={MyAnimals} />
         <Route>
           <Error404 />
         </Route>
