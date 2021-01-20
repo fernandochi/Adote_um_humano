@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CardPrimary from "../../components/CardPrimary";
 import { Container } from "./style";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 const MyAnimals = () => {
   const authToken = localStorage.getItem("accessToken");
@@ -23,11 +25,15 @@ const MyAnimals = () => {
   }, []);
 
   return (
-    <Container>
-      {animals.map((animal) => (
-        <CardPrimary animal={animal} />
-      ))}
-    </Container>
+    <>
+      <Header />
+      <Container>
+        {animals.map((animal) => (
+          <CardPrimary animal={animal} />
+        ))}
+      </Container>
+      <Footer />
+    </>
   );
 };
 
