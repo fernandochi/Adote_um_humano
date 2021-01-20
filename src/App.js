@@ -7,12 +7,8 @@ import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
 import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
-<<<<<<< HEAD
-import AdopterProfile from "./pages/AdopterProfile/index";
-import MyAnimals from "./pages/MyAnimals";
-=======
 import Profile from "./pages/Profile/index";
->>>>>>> develop
+import MyAnimals from "./pages/MyAnimals";
 
 const App = () => {
   return (
