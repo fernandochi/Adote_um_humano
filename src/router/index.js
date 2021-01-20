@@ -1,10 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 
-import { useSelector } from "react-redux";
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const auth = JSON.parse(window.localStorage.getItem("auth"));
-  console.log(auth);
 
   return (
     <Route
@@ -42,7 +39,7 @@ export const DonorRoute = ({ component: Component, ...rest }) => {
           return (
             <Redirect
               to={{
-                pathname: "/adopter",
+                pathname: "/",
                 state: {
                   from: props.location,
                 },

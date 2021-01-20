@@ -1,5 +1,8 @@
-import { Route, Switch } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import PrivateRoute, { DonorRoute } from "./router";
+import { thunkUserAuthenticated, thunkIsDonor } from "./redux/thunk";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoginUser from "./pages/Login";
 import Animals from "./pages/Animals";
@@ -9,13 +12,23 @@ import Footer from "./components/footer/index";
 import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
 import EditProfilePage from "./pages/EditProfile";
-import PrivateRoute, { DonorRoute } from "./router";
+import Profile from "./pages/Profile/index";
 
 const RegisterAnimal = lazy(() => import("./pages/AnimalForm"));
 const HomePage = lazy(() => import("./pages/Home"));
 const RegisterUser = lazy(() => import("./pages/Register"));
 
 const App = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  const id = window.localStorage.getItem("id");
+  const token = window.localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    dispatch(thunkUserAuthenticated(token));
+    dispatch(thunkIsDonor(id, token));
+  }, [location.pathname]);
   return (
     <>
       <Header />
@@ -37,24 +50,28 @@ const App = () => {
 
           <Route path="/animals" component={Animals} />
 
-          {/* <PrivateRoute
+          <PrivateRoute path="/edit-profile" component={EditProfilePage} />
+
+          <DonorRoute
             exact
             path="/donor/animal-form"
             component={RegisterAnimal}
-          /> */}
-          <Route exact path="/donor/animal-form" component={RegisterAnimal} />
+          />
 
-          <Route path="/edit-profile">
-            <EditProfilePage />
-          </Route>
-          {/* <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} /> */}
-          <Route exact path="/donor/edit-animal" component={EditAnimal} />
+          <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
+
           <PrivateRoute exact path="/goku" component={LoginUser} />
+
+          <PrivateRoute path="/adopter" component={Profile} />
+
+          <DonorRoute path="/donor" component={Profile} />
+
           <Route>
             <Error404 />
           </Route>
         </Switch>
       </Suspense>
+
       <Footer />
     </>
   );
