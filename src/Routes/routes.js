@@ -59,13 +59,13 @@ export const AdopterRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (!isDonor) {
+        if (!!isDonor) {
           return <Component {...props} />;
         } else {
           return (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/goku",
                 state: {
                   from: props.location,
                 },

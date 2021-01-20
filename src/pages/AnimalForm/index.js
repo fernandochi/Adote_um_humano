@@ -1,29 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ShowCaseComponent from "../../components/ShowCase";
 import { GridContainer, HelpDiv } from "../Register/style";
 import PopUpDiv from "./popup.jsx";
 import AnimalForm from "../../components/AnimalForm";
-import { useSelector, useDispatch } from "react-redux";
-import { thunkIsDonor, thunkUserAuthenticated } from "../../redux/thunk";
 
 const ResgisterAnimal = () => {
-  const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const id = window.localStorage.getItem("id");
-  const token = window.localStorage.getItem("accessToken");
-
-  useEffect(() => {
-    dispatch(thunkUserAuthenticated(token));
-    dispatch(thunkIsDonor(id, token));
-  }, [auth]);
-
   const [ReqError, SetReqError] = useState(false);
 
   const handleCloseInfo = () => {
     SetReqError(false);
   };
 
-  return auth ? (
+  return (
     <>
       <PopUpDiv isVisible={ReqError} closeInfo={handleCloseInfo} />
       <GridContainer>
@@ -38,8 +26,6 @@ const ResgisterAnimal = () => {
         <ShowCaseComponent />
       </GridContainer>
     </>
-  ) : (
-    <div>Não é possível acessar essa página</div>
   );
 };
 
