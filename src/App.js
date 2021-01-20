@@ -5,9 +5,14 @@ import Animals from "./pages/Animals";
 import Header from "./components/header/index";
 import Footer from "./components/footer/index";
 import RegisterAnimal from "./pages/AnimalForm";
+import EditAnimal from "./pages/EditAnimal";
 import Error404 from "./pages/Error404";
+<<<<<<< HEAD
 import AdopterProfile from "./pages/AdopterProfile/index";
 import MyAnimals from "./pages/MyAnimals";
+=======
+import Profile from "./pages/Profile/index";
+>>>>>>> develop
 
 const App = () => {
   return (
@@ -22,11 +27,17 @@ const App = () => {
           <RegisterUser />
         </Route>
         <Route path="/animals" component={Animals} />
-        <Route path="/animal-form">
+        <Route path="/donor/animal-form">
           <RegisterAnimal />
         </Route>
         <Route path="/adopter">
-          <AdopterProfile />
+          <Profile />
+        </Route>
+        <Route path="/donor">
+          <Profile />
+        </Route>
+        <Route path="/donor/edit-animal">
+          <EditAnimal />
         </Route>
         <Route path="/MyAnimals" component={MyAnimals} />
         <Route>

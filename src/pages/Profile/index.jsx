@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import CardSecondary from "../../components/CardSecondary";
 
-const AdopterProfile = () => {
+const Profile = () => {
   const [user, setUser] = useState([]);
   const id = window.localStorage.getItem("id");
   const token = window.localStorage.getItem("accessToken");
@@ -19,6 +19,7 @@ const AdopterProfile = () => {
     );
 
     setUser([data]);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const AdopterProfile = () => {
   );
 };
 
-export default AdopterProfile;
+export default Profile;
 
 const Container = styled.div`
   width: 100%;

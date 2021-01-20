@@ -23,6 +23,7 @@ const Header = () => {
               Home
             </Button>
             <Button
+              data-testid="login"
               onClick={() => history.push("/login")}
               location={location.pathname}
               path="login"
@@ -30,6 +31,7 @@ const Header = () => {
               Login
             </Button>
             <Button
+              data-testid="register"
               onClick={() => history.push("/register")}
               location={location.pathname}
               path="register"
@@ -73,21 +75,21 @@ const Header = () => {
             <Button
               onClick={() => history.push("/donor")}
               location={location.pathname}
-              path="/"
+              path="/donor"
             >
               Perfil
             </Button>
             <Button
               onClick={() => history.push("/my-animals")}
               location={location.pathname}
-              path="login"
+              path="my-animals"
             >
               Seus animais
             </Button>
             <Button
               onClick={() => history.push("/humans")}
               location={location.pathname}
-              path="register"
+              path="humans"
             >
               Humanos interessados
             </Button>

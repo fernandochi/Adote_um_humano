@@ -46,7 +46,7 @@ const MenuMobile = () => {
             </MenuItem>
           </span>
         )}
-        {location.pathname === "/donor" && (
+        {location.pathname === "/donor*" && (
           <span>
             <MenuItem onClick={() => history.push("/profile")}>Perfil</MenuItem>
             <MenuItem onClick={() => history.push("/my-animals")}>
