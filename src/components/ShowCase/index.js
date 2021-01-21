@@ -20,7 +20,7 @@ const ShowCaseComponent = () => {
         SetCurrentAnimals(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const Edit = (item) => {
     dispatch(editAnimal(item));
@@ -33,12 +33,12 @@ const ShowCaseComponent = () => {
       <section>
         {CurrentAnimals.map((item, idx) => {
           return (
-            <>
-              <CardPrimary key={idx} animal={item} />
+            <section key={idx}>
+              <CardPrimary animal={item} />
               <EditDiv onClick={() => Edit(item)}>
                 <EditIcon />
               </EditDiv>
-            </>
+            </section>
           );
         })}
       </section>

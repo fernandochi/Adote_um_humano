@@ -17,14 +17,15 @@ import {
   Errors,
 } from "../../pages/Register/style";
 import ImgPreview from "../ImgPreview";
+import { AdvertSection } from "./style";
 
 const EditAnimalForm = ({ ReqError, SetReqError }) => {
   const [AnimalCurrentEditing, setACE] = useState(
     JSON.parse(window.localStorage.getItem("animal"))
   );
 
-  const history = useHistory();
   const id = window.localStorage.getItem("id");
+  const history = useHistory();
 
   let schema = yup.object().shape({
     name: yup
@@ -66,7 +67,10 @@ const EditAnimalForm = ({ ReqError, SetReqError }) => {
             },
           }
         )
-        .then((res) => history.push("/donor"))
+        .then((res) => {
+          history.push("/donor");
+          window.localStorage.removeItem("animal");
+        })
         .catch((err) => SetReqError(true));
     }
 
@@ -106,11 +110,14 @@ const EditAnimalForm = ({ ReqError, SetReqError }) => {
           },
         }
       )
-      .then((res) => history.push("/donor"))
+      .then((res) => {
+        history.push("/donor");
+        window.localStorage.removeItem("animal");
+      })
       .catch((err) => SetReqError(true));
   };
 
-  return (
+  return window.localStorage.getItem("animal") ? (
     <FormAnimals onSubmit={handleSubmit(handleForm)}>
       <Title>Atualizar</Title>
       <ImgPreview register={register} edit object={AnimalCurrentEditing} />
@@ -244,6 +251,12 @@ const EditAnimalForm = ({ ReqError, SetReqError }) => {
       />
       <Button type="submit">Atualizar</Button>
     </FormAnimals>
+  ) : (
+    <AdvertSection>
+      Você não selecionou nenhum animal para editar, volte para a sua página de{" "}
+      <a href="#">animas cadastrados</a> e clique no ícone no canto superior
+      direto para editar as informações do seu pet!
+    </AdvertSection>
   );
 };
 
