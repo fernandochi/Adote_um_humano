@@ -19,8 +19,8 @@ export const thunkUserAuthenticated = (token) => (dispatch, _getState) => {
     });
 };
 
-export const thunkIsDonor = (id, token) => (dispatch, _getState) => {
-  axios
+export const thunkIsDonor = (id, token) => async (dispatch, _getState) => {
+  await axios
     .get(`https://adote-um-humano.herokuapp.com/users/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,12 +28,14 @@ export const thunkIsDonor = (id, token) => (dispatch, _getState) => {
     })
     .then((res) => {
       dispatch(isDonor(res.data.donor));
+      dispatch(userAuthenticated(true));
       window.localStorage.setItem("isDonor", res.data.donor);
+      window.localStorage.setItem("auth", true);
     })
     .catch((err) => {
       dispatch(isDonor(false));
+      dispatch(userAuthenticated(true));
       window.localStorage.setItem("isDonor", false);
-
-      console.log("faio no thunk donor", err);
+      window.localStorage.setItem("auth", false);
     });
 };

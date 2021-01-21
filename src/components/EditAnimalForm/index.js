@@ -143,14 +143,18 @@ const EditAnimalForm = ({ ReqError, SetReqError }) => {
       />
       <Errors>{errors.age?.message}</Errors>
       <Label htmlFor="race">Raça</Label>
-      <Input
+      <Select
+        id="race"
         name="race"
         ref={register}
         value={AnimalCurrentEditing.race}
-        onChange={(ev) => {
-          setACE({ ...AnimalCurrentEditing, race: ev.target.value });
-        }}
-      />
+        onChange={(ev) =>
+          setACE({ ...AnimalCurrentEditing, size: ev.target.value })
+        }
+      >
+        <option value="cat">Gato</option>
+        <option value="dog">Cachorro</option>
+      </Select>
       <Errors>{errors.race?.message}</Errors>
       <Label htmlFor="size">Porte</Label>
       <Select
