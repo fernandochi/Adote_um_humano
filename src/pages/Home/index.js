@@ -18,15 +18,13 @@ const Home = () => {
       <ParteOne>
         <WhiteBox>
           <TextBox>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            O Adote um humano é uma plataforma voltada para adoção responsável
+            de animais. Temos a certeza de que você irá encontrar seu mais novo
+            companheiro aqui!
+            <br /> Se cadastre, preencha o formulário de adoção responsável e
+            comece a se candidatar para os animais que te chamam a atenção. O
+            doador irá avaliar se seu perfil combina com o do animal e se o
+            match acontecer, você ganha uma amigão!
           </TextBox>
         </WhiteBox>
 

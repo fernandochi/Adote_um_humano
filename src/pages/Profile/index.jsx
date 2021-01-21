@@ -5,6 +5,7 @@ import CardSecondary from "../../components/CardSecondary";
 
 const Profile = () => {
   const [user, setUser] = useState([]);
+
   const id = window.localStorage.getItem("id");
   const token = window.localStorage.getItem("accessToken");
 
@@ -17,11 +18,9 @@ const Profile = () => {
         },
       }
     );
-
     setUser([data]);
-    console.log(data);
+    data.responsible && window.localStorage.setItem("responsible", true);
   };
-
   useEffect(() => {
     getData();
   }, []);

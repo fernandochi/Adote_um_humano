@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import PrivateRoute, { DonorRoute, AdopterRoute } from "./routes";
+import { DonorRoute, AdopterRoute } from "./routes";
 
 // PAGES
 import Home from "../pages/Home";
@@ -14,6 +14,7 @@ import Profile from "../pages/Profile/index";
 import HumansApplication from "../pages/HumansApplication";
 import WantToAdopt from "../pages/WantToAdopt";
 import EditProfilePage from "../pages/EditProfile";
+import Responsible from "../pages/ResponsibleForm";
 
 const Routes = () => {
   return (
@@ -26,17 +27,32 @@ const Routes = () => {
 
       <Route exact path="/animals" component={Animals} />
 
-      <AdopterRoute exact path="/animals/:id" component={AnimalsProfile} />
-
-      <DonorRoute exact path="/donor/animal-form" component={RegisterAnimal} />
+      <AdopterRoute
+        exact
+        path="/adopter/edit-profile"
+        component={EditProfilePage}
+      />
 
       <AdopterRoute exact path="/adopter" component={Profile} />
 
+      <AdopterRoute exact path="/animals/:id" component={AnimalsProfile} />
+      <AdopterRoute
+        exact
+        path="/adopter/responsible-form"
+        component={Responsible}
+      />
+
       <DonorRoute exact path="/donor" component={Profile} />
 
-      <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
+      <DonorRoute
+        exact
+        path="/donor/edit-profile"
+        component={EditProfilePage}
+      />
 
-      <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
+      <DonorRoute exact path="/donor/animal-form" component={RegisterAnimal} />
+
+      <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
 
       <Route exact path="/donor/applications" component={HumansApplication} />
 

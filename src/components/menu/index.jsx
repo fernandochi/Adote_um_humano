@@ -7,6 +7,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useLocation, useHistory } from "react-router-dom";
 
 const MenuMobile = () => {
+  const publicHeader = new RegExp("^(/register|/login|/$|/animals/*\\d*)$");
+  const donorHeader = new RegExp("^/donor.*");
+  const adopterHeader = new RegExp("^/adopter.*");
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
+  const isDonor = JSON.parse(window.localStorage.getItem("isDonor"));
   const location = useLocation();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -37,34 +42,78 @@ const MenuMobile = () => {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        {location.pathname === "/" && (
+        {location.pathname.match(publicHeader) && (
           <span>
-            <MenuItem onClick={() => history.push("/")}>Perfil</MenuItem>
-            <MenuItem onClick={() => history.push("/login")}>Login</MenuItem>
-            <MenuItem onClick={() => history.push("/register")}>
-              Cadastro
-            </MenuItem>
+            <MenuItem onClick={() => history.push("/")}>Home</MenuItem>
+            {auth ? (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    history.push("/");
+                    window.localStorage.clear();
+                  }}
+                >
+                  Logout
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    if (isDonor === true) {
+                      return history.push("/donor");
+                    } else {
+                      return history.push("/adopter");
+                    }
+                  }}
+                >
+                  Perfil
+                </MenuItem>
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={() => history.push("/login")}>
+                  Login
+                </MenuItem>
+                <MenuItem onClick={() => history.push("/register")}>
+                  Cadastro
+                </MenuItem>{" "}
+              </>
+            )}
           </span>
         )}
-        {location.pathname === "/donor*" && (
+        {location.pathname.match(donorHeader) && (
           <span>
-            <MenuItem onClick={() => history.push("/profile")}>Perfil</MenuItem>
-            <MenuItem onClick={() => history.push("/my-animals")}>
+            <MenuItem onClick={() => history.push("/donor")}>Perfil</MenuItem>
+            <MenuItem onClick={() => history.push("/donor/my-animals")}>
               Meus animais
             </MenuItem>
-            <MenuItem onClick={() => history.push("/humans")}>
+            <MenuItem onClick={() => history.push("/donor/humans")}>
               Humanos interessados
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                history.push("/");
+                window.localStorage.clear();
+              }}
+            >
+              Logout
             </MenuItem>
           </span>
         )}
-        {location.pathname === "/adopter" && (
+        {location.pathname.match(adopterHeader) && (
           <span>
-            <MenuItem onClick={() => history.push("/profile")}>Perfil</MenuItem>
+            <MenuItem onClick={() => history.push("/adopter")}>Perfil</MenuItem>
             <MenuItem onClick={() => history.push("/animals")}>
               Animais
             </MenuItem>
-            <MenuItem onClick={() => history.push("/favorites")}>
+            <MenuItem onClick={() => history.push("/adopter/favorites")}>
               Quero adotar
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                history.push("/");
+                window.localStorage.clear();
+              }}
+            >
+              Logout
             </MenuItem>
           </span>
         )}

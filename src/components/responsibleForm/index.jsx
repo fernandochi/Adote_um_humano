@@ -16,7 +16,8 @@ import { Container } from "./style";
 
 const ResponsibleForm = () => {
   const history = useHistory();
-  const { id } = useParams();
+  const id = window.localStorage.getItem("id");
+  const accessToken = window.localStorage.getItem("accessToken");
   let schema = yup.object().shape({
     residence: yup
       .string()
@@ -44,17 +45,13 @@ const ResponsibleForm = () => {
     const sendData = { responsible: data };
     const url = `https://adote-um-humano.herokuapp.com/users/${id}`;
     axios
-      .put(
-        url,
-        { sendData },
-        {
-          headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlhaWFhYWFhYUBnbWFpbC5jb20iLCJpYXQiOjE2MTA2NDg0NTUsImV4cCI6MTYxMDY1MjA1NSwic3ViIjoiNSJ9.X76H4zptlZWhpb1UbgRVa2kC7ogusiEDCdQZbuHv-rE",
-          },
-        }
-      )
-      .then((res) => history.push("/animals"));
+      .patch(url, sendData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((res) => history.push("/adopter"));
+    window.localStorage.setItem("responsible", true);
   };
 
   return (
