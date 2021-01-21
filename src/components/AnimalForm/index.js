@@ -99,7 +99,10 @@ const AnimalForm = ({ ReqError, SetReqError }) => {
       <Input type="number" name="age" ref={register} />
       <Errors>{errors.age?.message}</Errors>
       <Label htmlFor="race">Raça</Label>
-      <Input name="race" ref={register} />
+      <Select id="race" name="race" ref={register}>
+        <option value="cat">Gato</option>
+        <option value="dog">Cachorro</option>
+      </Select>
       <Errors>{errors.race?.message}</Errors>
       <Label htmlFor="size">Porte</Label>
       <Select id="size" name="size" ref={register}>

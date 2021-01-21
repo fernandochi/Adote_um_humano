@@ -4,6 +4,11 @@ import { useLocation, useHistory } from "react-router-dom";
 import MenuMobile from "../menu/index";
 
 const Header = () => {
+  const publicHeader = new RegExp("^(/register|/login|/$|/animals/*\\d*)$");
+  const donorHeader = new RegExp("^/donor.*");
+  const adopterHeader = new RegExp("^/adopter.*");
+  const auth = window.localStorage.getItem("auth");
+  const isDonor = window.localStorage.getItem("isDonor");
   const location = useLocation();
   const history = useHistory();
   return (
@@ -12,7 +17,7 @@ const Header = () => {
         <MenuMobile />
       </Menu>
 
-      {location.pathname === "/" && (
+      {location.pathname.match(publicHeader) && (
         <>
           <ContainerButtons>
             <Button
@@ -22,14 +27,29 @@ const Header = () => {
             >
               Home
             </Button>
-            <Button
-              data-testid="login"
-              onClick={() => history.push("/login")}
-              location={location.pathname}
-              path="login"
-            >
-              Login
-            </Button>
+            {auth ? (
+              <Button
+                data-testid="logout"
+                onClick={() => {
+                  window.localStorage.clear();
+                  history.push("/");
+                }}
+                location={location.pathname}
+                path="login"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                data-testid="login"
+                onClick={() => history.push("/login")}
+                location={location.pathname}
+                path="login"
+              >
+                Login
+              </Button>
+            )}
+
             <Button
               data-testid="register"
               onClick={() => history.push("/register")}
@@ -38,38 +58,27 @@ const Header = () => {
             >
               Cadastro
             </Button>
-          </ContainerButtons>{" "}
+            {auth && (
+              <Button
+                data-testid="profile"
+                onClick={() => {
+                  if (isDonor) {
+                    history.push("/donor");
+                  } else {
+                    history.push("/adopter");
+                  }
+                }}
+                location={location.pathname}
+                path="/profile"
+              >
+                Profile
+              </Button>
+            )}
+          </ContainerButtons>
         </>
       )}
 
-      {location.pathname === "/animals" && (
-        <>
-          <ContainerButtons>
-            <Button
-              onClick={() => history.push("/")}
-              location={location.pathname}
-              path="/"
-            >
-              Home
-            </Button>
-            <Button
-              onClick={() => history.push("/login")}
-              location={location.pathname}
-              path="login"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={() => history.push("/register")}
-              location={location.pathname}
-              path="register"
-            >
-              Cadastro
-            </Button>
-          </ContainerButtons>{" "}
-        </>
-      )}
-      {location.pathname === "/donor" && (
+      {location.pathname.match(donorHeader) && (
         <>
           <ContainerButtons>
             <Button
@@ -80,14 +89,14 @@ const Header = () => {
               Perfil
             </Button>
             <Button
-              onClick={() => history.push("/my-animals")}
+              onClick={() => history.push("/donor/my-animals")}
               location={location.pathname}
               path="my-animals"
             >
               Seus animais
             </Button>
             <Button
-              onClick={() => history.push("/humans")}
+              onClick={() => history.push("/donor/humans")}
               location={location.pathname}
               path="humans"
             >
@@ -96,11 +105,11 @@ const Header = () => {
           </ContainerButtons>{" "}
         </>
       )}
-      {location.pathname === "/adopter" && (
+      {location.pathname.match(adopterHeader) && (
         <>
           <ContainerButtons>
             <Button
-              onClick={() => history.push("/adopter/profile")}
+              onClick={() => history.push("/adopter")}
               location={location.pathname}
               path="/adopter"
             >

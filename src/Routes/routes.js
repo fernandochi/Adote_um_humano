@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -55,17 +54,18 @@ export const DonorRoute = ({ component: Component, ...rest }) => {
 
 export const AdopterRoute = ({ component: Component, ...rest }) => {
   const isDonor = window.localStorage.getItem("isDonor");
+  const auth = window.localStorage.getItem("auth");
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (!!isDonor) {
+        if (!isDonor && auth) {
           return <Component {...props} />;
         } else {
           return (
             <Redirect
               to={{
-                pathname: "/goku",
+                pathname: "/",
                 state: {
                   from: props.location,
                 },
