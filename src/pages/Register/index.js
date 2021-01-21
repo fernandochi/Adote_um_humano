@@ -18,6 +18,7 @@ import {
 
 const RegisterUser = () => {
   const history = useHistory();
+
   let schema = yup.object().shape({
     name: yup
       .string()

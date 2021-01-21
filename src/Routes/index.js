@@ -11,6 +11,8 @@ import EditAnimal from "../pages/EditAnimal";
 import Error404 from "../pages/Error404";
 import AnimalsProfile from "../pages/AnimalsProfile";
 import Profile from "../pages/Profile/index";
+import HumansApplication from "../pages/HumansApplication";
+import WantToAdopt from "../pages/WantToAdopt";
 import EditProfilePage from "../pages/EditProfile";
 
 const Routes = () => {
@@ -35,6 +37,10 @@ const Routes = () => {
       <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
 
       <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
+
+      <Route exact path="/donor/applications" component={HumansApplication} />
+
+      <Route exact path="/adopter/applications" component={WantToAdopt} />
 
       <Route component={Error404} />
     </Switch>
