@@ -10,6 +10,7 @@ import EditAnimal from "../pages/EditAnimal";
 import Error404 from "../pages/Error404";
 import AnimalsProfile from "../pages/AnimalsProfile";
 import Profile from "../pages/Profile/index";
+import MyAnimals from "../pages/MyAnimals";
 
 const Routes = () => {
   return (
@@ -25,6 +26,8 @@ const Routes = () => {
       <Route exact path="/animals/:id" component={AnimalsProfile} />
 
       <Route exact path="/donor/animal-form" component={RegisterAnimal} />
+
+      <Route exact path="/donor/my-animals" component={MyAnimals} />
 
       <Route exact path="/adopter" component={Profile} />
 

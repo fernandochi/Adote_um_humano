@@ -12,7 +12,7 @@ const MyAnimals = () => {
 
   const getMyanimals = async () => {
     let response = await axios
-      .get(`https://adote-um-humano.herokuapp.com/animals?donorId=${4}`, {
+      .get(`https://adote-um-humano.herokuapp.com/animals?donorId=${donorId}`, {
         auth: `Bearer ${authToken}`,
       })
       .catch((error) => console.log(error));
@@ -28,9 +28,11 @@ const MyAnimals = () => {
     <>
       <Header />
       <Container>
-        {animals.map((animal) => (
-          <CardPrimary animal={animal} />
-        ))}
+        {animals.length > 0 ? (
+          animals.map((animal) => <CardPrimary animal={animal} />)
+        ) : (
+          <span>No content</span>
+        )}
       </Container>
       <Footer />
     </>
