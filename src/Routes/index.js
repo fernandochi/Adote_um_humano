@@ -10,6 +10,8 @@ import EditAnimal from "../pages/EditAnimal";
 import Error404 from "../pages/Error404";
 import AnimalsProfile from "../pages/AnimalsProfile";
 import Profile from "../pages/Profile/index";
+import HumansApplication from "../pages/HumansApplication";
+import WantToAdopt from "../pages/WantToAdopt";
 
 const Routes = () => {
   return (
@@ -31,6 +33,10 @@ const Routes = () => {
       <Route exact path="/donor" component={Profile} />
 
       <Route exact path="/donor/edit-animal" component={EditAnimal} />
+
+      <Route exact path="/donor/applications" component={HumansApplication} />
+
+      <Route exact path="/adopter/applications" component={WantToAdopt} />
 
       <Route component={Error404} />
     </Switch>

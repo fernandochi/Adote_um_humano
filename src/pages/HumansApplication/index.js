@@ -1,28 +1,48 @@
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import CardSecondary from "../../components/CardSecondary";
-import { Container } from "./style";
+import CardTertiary from "../../components/CardTertiary";
+import { Container, Text } from "./style";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const HumansApplication = () => {
   const [humansInterested, setHumansInterested] = useState([]);
 
+  const token = window.localStorage.getItem("accessToken");
+  const id = window.localStorage.getItem("id");
+
   const getHumansInterested = () => {
-    axios.get("https://adote-um-humano.herokuapp.com/").then((res) => {
-      setHumansInterested(res.data);
-    });
+    axios
+      .get(
+        `https://adote-um-humano.herokuapp.com/animals?donorId=1&_embed=subscriber`
+      )
+      .then((res) => {
+        res.data.map((animal) =>
+          animal.subscriber.map((human) => {
+            axios
+              .get(
+                `https://adote-um-humano.herokuapp.com/users/${human.userId}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              )
+              .then((resp) => {
+                setHumansInterested([...humansInterested, resp.data]);
+              });
+          })
+        );
+      });
   };
 
   useEffect(() => getHumansInterested(), []);
 
   return (
     <Container>
-      <Header />
-
-      <CardSecondary user={humansInterested} />
-
-      <Footer />
+      {humansInterested.length !== 0 ? (
+        humansInterested.map((human) => <CardTertiary user={human} />)
+      ) : (
+        <Text>Seu(s) animai(s) não possue(m) aplicação</Text>
+      )}
     </Container>
   );
 };
