@@ -53,8 +53,8 @@ export const DonorRoute = ({ component: Component, ...rest }) => {
 };
 
 export const AdopterRoute = ({ component: Component, ...rest }) => {
-  const isDonor = window.localStorage.getItem("isDonor");
-  const auth = window.localStorage.getItem("auth");
+  const isDonor = JSON.parse(window.localStorage.getItem("isDonor"));
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
   return (
     <Route
       {...rest}
