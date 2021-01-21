@@ -7,11 +7,11 @@ const Header = () => {
   const publicHeader = new RegExp("^(/register|/login|/$|/animals/*\\d*)$");
   const donorHeader = new RegExp("^/donor.*");
   const adopterHeader = new RegExp("^/adopter.*");
-  const auth = window.localStorage.getItem("auth");
-  const isDonor = window.localStorage.getItem("isDonor");
+  const auth = JSON.parse(window.localStorage.getItem("auth"));
+  const isDonor = JSON.parse(window.localStorage.getItem("isDonor"));
   const location = useLocation();
   const history = useHistory();
-  const accessToken = window.localStorage.getItem("accessToken");
+
   return (
     <Container>
       <Menu>
@@ -28,52 +28,89 @@ const Header = () => {
             >
               Home
             </Button>
-            {auth ? (
-              <Button
-                data-testid="logout"
-                onClick={() => {
-                  window.localStorage.clear();
-                  history.push("/");
-                }}
-                location={location.pathname}
-                path="login"
-              >
-                Logout
-              </Button>
+            {auth === true ? (
+              <>
+                {" "}
+                <Button
+                  data-testid="logout"
+                  onClick={() => {
+                    window.localStorage.clear();
+                    history.push("/");
+                  }}
+                  location={location.pathname}
+                  path="login"
+                >
+                  Logout
+                </Button>
+                <Button
+                  data-testid="profile"
+                  onClick={() => {
+                    if (isDonor === true) {
+                      return history.push("/donor");
+                    } else {
+                      return history.push("/adopter");
+                    }
+                  }}
+                  location={location.pathname}
+                  path={isDonor === true ? "donor" : "adopter"}
+                >
+                  Perfil
+                </Button>
+                {isDonor === false ? (
+                  <Button
+                    onClick={() => history.push("/animals")}
+                    location={location.pathname}
+                    path="animals"
+                  >
+                    Animais
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => history.push("/donor/my-animals")}
+                    location={location.pathname}
+                    path="donor/my-animals"
+                  >
+                    Meus animais
+                  </Button>
+                )}
+                {isDonor === false ? (
+                  <Button
+                    onClick={() => history.push("/adopter/favorites")}
+                    location={location.pathname}
+                    path="adopter/favorites"
+                  >
+                    Quero adotar
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => history.push("/donor/humans")}
+                    location={location.pathname}
+                    path="donor/humans"
+                  >
+                    Humanos interessados
+                  </Button>
+                )}
+              </>
             ) : (
-              <Button
-                data-testid="login"
-                onClick={() => history.push("/login")}
-                location={location.pathname}
-                path="login"
-              >
-                Login
-              </Button>
-            )}
-
-            <Button
-              data-testid="register"
-              onClick={() => history.push("/register")}
-              location={location.pathname}
-              path="register"
-            >
-              Cadastro
-            </Button>
-            {auth && (
-              <Button
-                data-testid="profile"
-                onClick={() => {
-                  if (isDonor) {
-                    history.push("/donor");
-                  } else {
-                    history.push("/adopter");
-                  }
-                }}
-                location={location.pathname}
-                path="/profile"
-              >
-                Profile
-              </Button>
+              <>
+                {" "}
+                <Button
+                  data-testid="login"
+                  onClick={() => history.push("/login")}
+                  location={location.pathname}
+                  path="login"
+                >
+                  Login
+                </Button>{" "}
+                <Button
+                  data-testid="register"
+                  onClick={() => history.push("/register")}
+                  location={location.pathname}
+                  path="register"
+                >
+                  Cadastro
+                </Button>
+              </>
             )}
           </ContainerButtons>
         </>
@@ -85,23 +122,34 @@ const Header = () => {
             <Button
               onClick={() => history.push("/donor")}
               location={location.pathname}
-              path="/donor"
+              path="donor"
             >
               Perfil
             </Button>
             <Button
               onClick={() => history.push("/donor/my-animals")}
               location={location.pathname}
-              path="my-animals"
+              path="donor/my-animals"
             >
               Seus animais
             </Button>
             <Button
               onClick={() => history.push("/donor/humans")}
               location={location.pathname}
-              path="humans"
+              path="donor/humans"
             >
               Humanos interessados
+            </Button>
+            <Button
+              data-testid="logout"
+              onClick={() => {
+                window.localStorage.clear();
+                history.push("/");
+              }}
+              location={location.pathname}
+              path="login"
+            >
+              Logout
             </Button>
           </ContainerButtons>{" "}
         </>
@@ -112,7 +160,7 @@ const Header = () => {
             <Button
               onClick={() => history.push("/adopter")}
               location={location.pathname}
-              path="/adopter"
+              path="adopter"
             >
               Perfil
             </Button>
@@ -126,9 +174,20 @@ const Header = () => {
             <Button
               onClick={() => history.push("/adopter/favorites")}
               location={location.pathname}
-              path="favorites"
+              path="adopter/favorites"
             >
               Quero adotar
+            </Button>
+            <Button
+              data-testid="logout"
+              onClick={() => {
+                window.localStorage.clear();
+                history.push("/");
+              }}
+              location={location.pathname}
+              path="login"
+            >
+              Logout
             </Button>
           </ContainerButtons>{" "}
         </>

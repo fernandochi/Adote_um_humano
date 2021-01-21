@@ -14,6 +14,7 @@ import Profile from "../pages/Profile/index";
 import HumansApplication from "../pages/HumansApplication";
 import WantToAdopt from "../pages/WantToAdopt";
 import EditProfilePage from "../pages/EditProfile";
+import Responsible from "../pages/ResponsibleForm";
 
 const Routes = () => {
   return (
@@ -35,6 +36,11 @@ const Routes = () => {
       <AdopterRoute exact path="/adopter" component={Profile} />
 
       <AdopterRoute exact path="/animals/:id" component={AnimalsProfile} />
+      <AdopterRoute
+        exact
+        path="/adopter/responsible-form"
+        component={Responsible}
+      />
 
       <DonorRoute exact path="/donor" component={Profile} />
 
