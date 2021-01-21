@@ -40,9 +40,9 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-  font-size: 16px;
+  font-size: 1em;
   @media (min-width: 700px) {
-    font-size: 20px;
+    font-size: 1.25em;
   }
 `;
 
@@ -150,7 +150,7 @@ const PopUp = styled.div`
   width: 90vw;
   height: 20vh;
   position: fixed;
-  top: 4rem;
+  top: 8rem;
   left: 50%;
   background-color: #184d47;
   border-radius: 0.5em;
@@ -173,8 +173,7 @@ const ExteriorDiv = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: #333;
-  filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6);
   ::after {
     opacity: initial;
   }
@@ -190,17 +189,18 @@ const TextDiv = styled.div`
 
 const CloseDiv = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: flex-start;
   color: #fff;
   grid-area: close;
-  position: absolute;
-  top: -40px;
-  right: 10px;
-  > p {
-    font-size: 2rem;
-    color: red;
+
+  svg {
+    height: 30px;
+    width: 30px;
+    fill: #fff;
+    transition: all ease-in-out 0.3s;
     :hover {
+      transform: rotate(90deg);
       cursor: pointer;
     }
   }
@@ -321,6 +321,7 @@ const ShowCase = styled.div`
 `;
 
 const FormAnimals = styled(Form)`
+  font-size: 1.25rem;
   width: 90vw;
   margin: 0 auto;
   height: initial;
@@ -360,7 +361,7 @@ const exterior = keyframes`
   }
 
   100% {
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.6);
     opacity: 0.8;
   }
 `;
