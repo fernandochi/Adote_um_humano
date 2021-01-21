@@ -1,6 +1,5 @@
 // COMPONENTS
 import FilterFeature from "../FilterFeature";
-import FilterBar from "../FilterBar";
 
 const AnimalsFilter = ({ setAnimals, animals }) => {
   const handleSubmit = (e, type) => {
@@ -10,7 +9,6 @@ const AnimalsFilter = ({ setAnimals, animals }) => {
 
   return (
     <>
-      <FilterBar />
       <div>
         <form onSubmit={handleSubmit}>
           <FilterFeature

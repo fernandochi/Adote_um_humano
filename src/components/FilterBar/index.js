@@ -5,8 +5,10 @@ import { Filter } from "./style";
 const FilterBar = () => {
   return (
     <Filter>
-      <span>Filtros</span>
-      <FiFilter />
+      <button>
+        <span>Filtros</span>
+        <FiFilter />
+      </button>
     </Filter>
   );
 };
