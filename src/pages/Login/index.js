@@ -51,7 +51,6 @@ const LoginUser = () => {
           })
           .then((res) => {
             window.localStorage.setItem("id", res.data.id);
-            console.log(res.data);
 
             res.data.donor ? history.push("/donor") : history.push("/adopter");
           });
