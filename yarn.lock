@@ -2901,6 +2901,11 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+bcryptjs@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+  integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=
+
 bfj@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/bfj/-/bfj-7.0.2.tgz#1988ce76f3add9ac2913fd8ba47aad9e651bfbb2"
@@ -6912,6 +6917,11 @@ jest@26.6.0:
     "@jest/core" "^26.6.0"
     import-local "^3.0.2"
     jest-cli "^26.6.0"
+
+jose@3:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-3.5.2.tgz#33eab0b301fd73640aa1e3f2a8c2884d2ba25a52"
+  integrity sha512-zsL5rd2z/T9RfD04bma1lge4q0EHZXMMBL3HQY5pscynQRCgMRibypHztp+s2tlYC9KN/wh7FjMuvJz/LCETdA==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
