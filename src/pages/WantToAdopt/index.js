@@ -17,7 +17,7 @@ const WantToAdopt = () => {
         },
       })
       .then((res) => {
-        const animals = res.data.filter((user) => user.userId === id);
+        const animals = res.data.filter((user) => user.userId === parseInt(id));
 
         animals.map((animal) =>
           axios
