@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import PrivateRoute, { DonorRoute, AdopterRoute } from "./routes";
 
 // PAGES
 import Home from "../pages/Home";
@@ -10,7 +11,7 @@ import EditAnimal from "../pages/EditAnimal";
 import Error404 from "../pages/Error404";
 import AnimalsProfile from "../pages/AnimalsProfile";
 import Profile from "../pages/Profile/index";
-import MyAnimals from "../pages/MyAnimals";
+import EditProfilePage from "../pages/EditProfile";
 
 const Routes = () => {
   return (
@@ -23,17 +24,17 @@ const Routes = () => {
 
       <Route exact path="/animals" component={Animals} />
 
-      <Route exact path="/animals/:id" component={AnimalsProfile} />
+      <AdopterRoute exact path="/animals/:id" component={AnimalsProfile} />
 
-      <Route exact path="/donor/animal-form" component={RegisterAnimal} />
+      <DonorRoute exact path="/donor/animal-form" component={RegisterAnimal} />
 
-      <Route exact path="/donor/my-animals" component={MyAnimals} />
+      <AdopterRoute exact path="/adopter" component={Profile} />
 
-      <Route exact path="/adopter" component={Profile} />
+      <DonorRoute exact path="/donor" component={Profile} />
 
-      <Route exact path="/donor" component={Profile} />
+      <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
 
-      <Route exact path="/donor/edit-animal" component={EditAnimal} />
+      <PrivateRoute exact path="/edit-profile" component={EditProfilePage} />
 
       <Route component={Error404} />
     </Switch>
