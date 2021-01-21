@@ -5,6 +5,7 @@ import axios from "axios";
 import CardPrimary from "../../components/CardPrimary";
 import ModalAnimals from "../../components/ModalAnimals";
 import AnimalsFilter from "../../components/AnimalsFilter";
+
 // STYLE
 import { Container } from "./style";
 
@@ -18,17 +19,19 @@ const Animals = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       <AnimalsFilter setAnimals={setAnimals} animals={animals} />
-      <ul>
-        {animals.map((animal, index) => (
-          <li key={index}>
-            <CardPrimary animal={animal} setOpen={setOpen} />
-          </li>
-        ))}
-      </ul>
-      {open && <ModalAnimals setOpen={setOpen} />}
-    </Container>
+      <Container>
+        <ul>
+          {animals.map((animal, index) => (
+            <li key={index}>
+              <CardPrimary animal={animal} setOpen={setOpen} />
+            </li>
+          ))}
+        </ul>
+        {open && <ModalAnimals setOpen={setOpen} />}
+      </Container>
+    </>
   );
 };
 

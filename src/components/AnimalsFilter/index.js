@@ -1,34 +1,49 @@
+import { useState } from "react";
+
 // COMPONENTS
 import FilterFeature from "../FilterFeature";
+import FilterBar from "../FilterBar";
+
+// STYLES
+import { Container, Form } from "./style";
 
 const AnimalsFilter = ({ setAnimals, animals }) => {
-  const handleSubmit = (e, type) => {
+  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState("");
+
+  const handleSubmit = (e, url) => {
+    console.log(url);
+  };
+
+  const getAnimals = (e) => {
     e.preventDefault();
-    console.log(e.target.value, type);
   };
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <FilterFeature
-            type="race"
-            animals={animals}
-            handleSubmit={handleSubmit}
-          />
-          <FilterFeature
-            type="size"
-            animals={animals}
-            handleSubmit={handleSubmit}
-          />
-          <FilterFeature
-            type="sexo"
-            animals={animals}
-            handleSubmit={handleSubmit}
-          />
-          <button type="submit">Filtrar</button>
-        </form>
-      </div>
+      <FilterBar setOpen={setOpen} open={open} />
+      {open && (
+        <Container>
+          <Form onSubmit={getAnimals}>
+            <FilterFeature
+              type="raça"
+              animals={animals}
+              handleSubmit={handleSubmit}
+            />
+            <FilterFeature
+              type="tamanho"
+              animals={animals}
+              handleSubmit={handleSubmit}
+            />
+            <FilterFeature
+              type="sexo"
+              animals={animals}
+              handleSubmit={handleSubmit}
+            />
+            <button type="submit">Filtrar</button>
+          </Form>
+        </Container>
+      )}
     </>
   );
 };

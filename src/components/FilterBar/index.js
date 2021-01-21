@@ -1,13 +1,20 @@
 // STYLE
 import { FiFilter } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
 import { Filter } from "./style";
 
-const FilterBar = () => {
+const FilterBar = ({ setOpen, open }) => {
   return (
     <Filter>
-      <button>
-        <span>Filtros</span>
-        <FiFilter />
+      <button onClick={() => setOpen(!open)}>
+        {open ? (
+          <MdClose />
+        ) : (
+          <>
+            <span>Filtros</span>
+            <FiFilter />
+          </>
+        )}
       </button>
     </Filter>
   );

@@ -9,7 +9,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 
 const FilterFeature = ({ animals, type, handleSubmit }) => {
   const [values, setValues] = useState([]);
-
+  const [url, setUrl] = useState("");
   const [checked, setChecked] = useState("");
 
   useEffect(() => {
@@ -20,9 +20,13 @@ const FilterFeature = ({ animals, type, handleSubmit }) => {
     );
   }, [animals, type, values]);
 
+  useEffect(() => {
+    handleSubmit(checked, url);
+  }, [url, checked, handleSubmit]);
+
   const selectRadio = (e) => {
-    handleSubmit(e, type);
     setChecked(e.target.value);
+    setUrl(`${type}=${e.target.value}`);
   };
 
   return (
@@ -33,7 +37,7 @@ const FilterFeature = ({ animals, type, handleSubmit }) => {
         {values.map((feat, index) => (
           <FormControlLabel
             value={feat}
-            control={<Radio />}
+            control={<Radio color="default" />}
             label={feat}
             key={index}
           />
