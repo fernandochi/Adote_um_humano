@@ -1,37 +1,23 @@
-import { Route, Switch } from "react-router-dom";
-import RegisterUser from "./pages/Register";
-import LoginUser from "./pages/Login";
-import Animals from "./pages/Animals";
-import Header from "./components/header/index";
-import Footer from "./components/footer/index";
-import RegisterAnimal from "./pages/AnimalForm";
-import Error404 from "./pages/Error404";
+import { useLocation } from "react-router";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { thunkUserAuthenticated, thunkIsDonor } from "./redux/thunk";
+
+import Routes from "./Routes";
 
 const App = () => {
-  return (
-    <>
-      <Header />
-      <Switch>
-        <Route exact path="/"></Route>
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-        <Route exact path="/login">
-          <LoginUser />
-        </Route>
-        <Route path="/register">
-          <RegisterUser />
-        </Route>
+  const id = window.localStorage.getItem("id");
+  const token = window.localStorage.getItem("accessToken");
 
-        <Route path="/animals" component={Animals} />
-        <Route path="/animal-form">
-          <RegisterAnimal />
-        </Route>
-        <Route>
-          <Error404 />
-        </Route>
-      </Switch>
-      <Footer />
-    </>
-  );
+  useEffect(() => {
+    dispatch(thunkUserAuthenticated(token));
+    dispatch(thunkIsDonor(id, token));
+  }, [location.pathname]);
+
+  return <Routes />;
 };
 
 export default App;

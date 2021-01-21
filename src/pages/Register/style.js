@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import "./style.css";
+import styled, { keyframes } from "styled-components";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
@@ -41,9 +40,9 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-  font-size: 16px;
+  font-size: 1em;
   @media (min-width: 700px) {
-    font-size: 20px;
+    font-size: 1.25em;
   }
 `;
 
@@ -151,7 +150,7 @@ const PopUp = styled.div`
   width: 90vw;
   height: 20vh;
   position: fixed;
-  top: 4rem;
+  top: 8rem;
   left: 50%;
   background-color: #184d47;
   border-radius: 0.5em;
@@ -165,7 +164,7 @@ const PopUp = styled.div`
     ". . close"
     ". msg ."
     ". . button";
-  ${(props) => props.isVisible && "animation: popup 1s"}
+  ${(props) => props.isVisible && `animation: ${popup} 1s`}
 `;
 
 const ExteriorDiv = styled.div`
@@ -174,12 +173,11 @@ const ExteriorDiv = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: #333;
-  filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6);
   ::after {
     opacity: initial;
   }
-  ${(props) => props.isVisible && "animation: exterior 1s"}
+  ${(props) => props.isVisible && `animation: ${exterior} 1s`}
 `;
 const TextDiv = styled.div`
   display: flex;
@@ -191,17 +189,18 @@ const TextDiv = styled.div`
 
 const CloseDiv = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: flex-start;
   color: #fff;
   grid-area: close;
-  position: absolute;
-  top: -40px;
-  right: 10px;
-  > p {
-    font-size: 2rem;
-    color: red;
+
+  svg {
+    height: 30px;
+    width: 30px;
+    fill: #fff;
+    transition: all ease-in-out 0.3s;
     :hover {
+      transform: rotate(90deg);
       cursor: pointer;
     }
   }
@@ -226,7 +225,7 @@ const InputImg = styled.input`
   &:before {
     font: inherit;
     height: 25px;
-    content: "Escolha um arquivo";
+    content: "Escolha uma foto";
     background-color: #fad586;
     display: flex;
     flex-direction: column;
@@ -262,12 +261,15 @@ const GridContainer = styled(Container)`
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 30vmin;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
 
   @media (min-width: 1000px) {
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "help help"
+      "form current";
   }
 `;
 
@@ -285,7 +287,8 @@ const ShowCase = styled.div`
   box-sizing: border-box;
   overflow-y: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   > p {
     color: red;
   }
@@ -313,10 +316,12 @@ const ShowCase = styled.div`
     margin-right: 15px;
     width: 30vw;
     align-self: center;
+    grid-area: current;
   }
 `;
 
 const FormAnimals = styled(Form)`
+  font-size: 1.25rem;
   width: 90vw;
   margin: 0 auto;
   height: initial;
@@ -326,6 +331,49 @@ const FormAnimals = styled(Form)`
     margin-left: 15px;
     width: 30vw;
     height: 85vh;
+    grid-area: form;
+  }
+`;
+
+const HelpDiv = styled.div`
+  width: 90vw;
+  margin: 0 auto;
+  background: beige;
+  color: red;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  text-align: justify;
+  padding: 8px;
+  margin-top: 1rem;
+
+  @media (min-width: 1000px) {
+    grid-area: help;
+  }
+`;
+
+const exterior = keyframes`
+ 0% {
+    background-color: red;
+    opacity: 0;
+  }
+  80% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0.8;
+  }
+`;
+
+const popup = keyframes`
+ from {
+    top: -8rem;
+    opacity: 0;
+  }
+  to {
+    top: 4rem;
+    opacity: 1;
   }
 `;
 export {
@@ -350,4 +398,5 @@ export {
   GridContainer,
   ShowCase,
   FormAnimals,
+  HelpDiv,
 };
