@@ -46,7 +46,16 @@ const MenuMobile = () => {
             </MenuItem>
           </span>
         )}
-        {location.pathname === "/donor*" && (
+        {location.pathname === "/animals" && (
+          <span>
+            <MenuItem onClick={() => history.push("/home")}>Home</MenuItem>
+            <MenuItem onClick={() => history.push("/login")}>Login</MenuItem>
+            <MenuItem onClick={() => history.push("/register")}>
+              Cadastro
+            </MenuItem>
+          </span>
+        )}
+        {location.pathname === "/donor" && (
           <span>
             <MenuItem onClick={() => history.push("/profile")}>Perfil</MenuItem>
             <MenuItem onClick={() => history.push("/my-animals")}>
@@ -59,11 +68,13 @@ const MenuMobile = () => {
         )}
         {location.pathname === "/adopter" && (
           <span>
-            <MenuItem onClick={() => history.push("/profile")}>Perfil</MenuItem>
-            <MenuItem onClick={() => history.push("/animals")}>
+            <MenuItem onClick={() => history.push("/adopter/profile")}>
+              Perfil
+            </MenuItem>
+            <MenuItem onClick={() => history.push("/adoter/animals")}>
               Animais
             </MenuItem>
-            <MenuItem onClick={() => history.push("/favorites")}>
+            <MenuItem onClick={() => history.push("/adopter/favorites")}>
               Quero adotar
             </MenuItem>
           </span>

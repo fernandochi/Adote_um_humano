@@ -6,6 +6,7 @@ import MenuMobile from "../menu/index";
 const Header = () => {
   const location = useLocation();
   const history = useHistory();
+  const accessToken = window.localStorage.getItem("accessToken");
   return (
     <Container>
       <Menu>
@@ -41,8 +42,33 @@ const Header = () => {
           </ContainerButtons>{" "}
         </>
       )}
-
-      {location.pathname === "/animals" && (
+      {accessToken && location.pathname === "/animals" ? (
+        <>
+          <ContainerButtons>
+            <Button
+              onClick={() => history.push("/adopter")}
+              location={location.pathname}
+              path="profile"
+            >
+              Perfil
+            </Button>
+            <Button
+              onClick={() => history.push("/animals")}
+              location={location.pathname}
+              path="animals"
+            >
+              Animais
+            </Button>
+            <Button
+              onClick={() => history.push("/adopter/favorites")}
+              location={location.pathname}
+              path="register"
+            >
+              Quero adotar
+            </Button>
+          </ContainerButtons>{" "}
+        </>
+      ) : (
         <>
           <ContainerButtons>
             <Button
@@ -53,14 +79,14 @@ const Header = () => {
               Home
             </Button>
             <Button
-              onClick={() => history.push("/login")}
+              onClick={() => history.push("/animals")}
               location={location.pathname}
               path="login"
             >
               Login
             </Button>
             <Button
-              onClick={() => history.push("/register")}
+              onClick={() => history.push("/adopter/favorites")}
               location={location.pathname}
               path="register"
             >
@@ -69,6 +95,7 @@ const Header = () => {
           </ContainerButtons>{" "}
         </>
       )}
+
       {location.pathname === "/donor" && (
         <>
           <ContainerButtons>
@@ -107,7 +134,7 @@ const Header = () => {
               Perfil
             </Button>
             <Button
-              onClick={() => history.push("/adopter/animals")}
+              onClick={() => history.push("/animals")}
               location={location.pathname}
               path="animals"
             >

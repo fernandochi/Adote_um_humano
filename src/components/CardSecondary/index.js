@@ -7,8 +7,10 @@ import {
   StyledSpam,
 } from "./styles";
 import { BsListCheck } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
 
 const CardSecondary = ({ user }) => {
+  const history = useHistory();
   return (
     <>
       <CardContainer>
@@ -32,7 +34,9 @@ const CardSecondary = ({ user }) => {
         )} */}
         </InfoContainer>
       </CardContainer>
-      <StyledButton>Editar perfil</StyledButton>
+      <StyledButton onClick={() => history.push("/edit-profile")}>
+        Editar perfil
+      </StyledButton>
     </>
   );
 };
