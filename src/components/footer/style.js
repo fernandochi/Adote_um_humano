@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.h1`
-  width: 100vw;
+  width: 100%;
   height: 60px;
   background-color: #d6efc7;
   font-family: "Amatic SC", cursive;

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // COMPONENTS
 import FilterFeature from "../FilterFeature";
 import FilterBar from "../FilterBar";

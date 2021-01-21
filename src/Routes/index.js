@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import { DonorRoute, AdopterRoute } from "./routes";
 
 // PAGES
 import Home from "../pages/Home";
@@ -10,6 +11,9 @@ import EditAnimal from "../pages/EditAnimal";
 import Error404 from "../pages/Error404";
 import AnimalsProfile from "../pages/AnimalsProfile";
 import Profile from "../pages/Profile/index";
+import HumansApplication from "../pages/HumansApplication";
+import WantToAdopt from "../pages/WantToAdopt";
+import EditProfilePage from "../pages/EditProfile";
 
 const Routes = () => {
   return (
@@ -22,15 +26,31 @@ const Routes = () => {
 
       <Route exact path="/animals" component={Animals} />
 
-      <Route exact path="/animals/:id" component={AnimalsProfile} />
+      <AdopterRoute
+        exact
+        path="/adopter/edit-profile"
+        component={EditProfilePage}
+      />
 
-      <Route exact path="/donor/animal-form" component={RegisterAnimal} />
+      <AdopterRoute exact path="/adopter" component={Profile} />
 
-      <Route exact path="/adopter" component={Profile} />
+      <AdopterRoute exact path="/animals/:id" component={AnimalsProfile} />
 
-      <Route exact path="/donor" component={Profile} />
+      <DonorRoute exact path="/donor" component={Profile} />
 
-      <Route exact path="/donor/edit-animal" component={EditAnimal} />
+      <DonorRoute
+        exact
+        path="/donor/edit-profile"
+        component={EditProfilePage}
+      />
+
+      <DonorRoute exact path="/donor/animal-form" component={RegisterAnimal} />
+
+      <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
+
+      <Route exact path="/donor/applications" component={HumansApplication} />
+
+      <Route exact path="/adopter/applications" component={WantToAdopt} />
 
       <Route component={Error404} />
     </Switch>
