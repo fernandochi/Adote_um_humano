@@ -11,15 +11,7 @@ const HumansApplication = () => {
   const token = window.localStorage.getItem("accessToken");
   const id = window.localStorage.getItem("id");
 
-  const getAnimals = () => {
-    axios
-      .get(
-        `https://adote-um-humano.herokuapp.com/animals?donorId=1&_embed=subscriber`
-      )
-      .then((res) => {
-        setAnimals([...animals, res.data]);
-      });
-  };
+  const getAllUsers = () => {};
 
   const getHumansProfile = async (userId) => {
     const profiles = await axios.get(
@@ -31,8 +23,6 @@ const HumansApplication = () => {
       }
     );
 
-    console.log(profiles.data);
-
     return await Promise.resolve(profiles);
   };
 
@@ -41,19 +31,37 @@ const HumansApplication = () => {
       `https://adote-um-humano.herokuapp.com/animals?donorId=1&_embed=subscriber`
     );
 
+    const secondRequest = await axios.get(
+      "https://adote-um-humano.herokuapp.com/users",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
     const animal = await firstRequest.data;
+
+    const humans = await secondRequest.data;
+
+    // console.log(humansAdopters);
 
     const subscribers = await animal.map((sub) => sub.subscriber);
 
     const subs = await subscribers.flatMap((user) => user);
 
-    const humansProfile = await subs.map(
-      async (human) => await getHumansProfile(human.userId)
+    const adopters = subs.map((sub) =>
+      humans.filter((user) => sub.userId === user.id)
     );
 
-    console.log(humansProfile);
+    setHumansInterested(adopters);
 
-    return humansProfile;
+    // console.log(adopters);
+    // const humansProfile = await subs.filter((human) => human.userId === hu);
+
+    // console.log(humansProfile);
+
+    // return humansProfile;
 
     // const secondRequest = await getHumansInterested(firstRequest);
   };
@@ -62,14 +70,11 @@ const HumansApplication = () => {
 
   return (
     <Container>
-      {/* {
-        humansInterested.length !== 0
-          ? console.log(loadHumans())
-          : console.log(loadHumans())
-
-        // humansInterested.map((human) => <CardTertiary user={human} />)
-        // <Text>Seu(s) animai(s) não possue(m) aplicação</Text>
-      } */}
+      {humansInterested.length !== 0 ? (
+        humansInterested.map((human) => <CardTertiary user={human} />)
+      ) : (
+        <Text>Seu(s) animai(s) não possue(m) aplicação</Text>
+      )}
     </Container>
   );
 };
