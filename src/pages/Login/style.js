@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   color: white;
   background-image: url(${BackgroundImage3});
@@ -27,7 +27,6 @@ const Container = styled.div`
 const Title = styled.h1`
   text-align: center;
   font-size: 45px;
-  padding-bottom: 20px;
 `;
 
 const Form = styled.form`

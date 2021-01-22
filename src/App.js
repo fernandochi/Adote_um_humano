@@ -1,23 +1,28 @@
-import { Route, Switch } from "react-router-dom";
-import RegisterUser from "./pages/Register";
-import LoginUser from "./pages/Login";
+import { useLocation } from "react-router";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { thunkIsDonor } from "./redux/thunk";
+
+import Routes from "./Routes";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 const App = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  const id = window.localStorage.getItem("id");
+  const token = window.localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    dispatch(thunkIsDonor(id, token));
+  }, [location.pathname]);
+
   return (
     <>
-      <Switch>
-        <Route exact path="/">
-          <h1>awasome app</h1>
-        </Route>
-
-        <Route exact path="/login">
-          <LoginUser />
-        </Route>
-
-        <Route path="/register">
-          <RegisterUser />
-        </Route>
-      </Switch>
+      <Header />
+      <Routes />
+      <Footer />
     </>
   );
 };
