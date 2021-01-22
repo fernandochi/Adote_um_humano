@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BackgroundImage3 from "../../assets/img/Background3.png";
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   color: white;
   background-image: url(${BackgroundImage3});
