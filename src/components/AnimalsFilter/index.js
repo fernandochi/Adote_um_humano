@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 // COMPONENTS
 import FilterFeature from "../FilterFeature";
@@ -10,13 +11,35 @@ import { Container, Form } from "./style";
 const AnimalsFilter = ({ setAnimals, animals }) => {
   const [open, setOpen] = useState(false);
   const [url, setUrl] = useState("");
+  const [raca, setRaca] = useState("");
+  const [tamanho, setTamanho] = useState("");
+  const [sexo, setSexo] = useState("");
 
-  const handleSubmit = (e, url) => {
-    console.log(url);
+  const handleSubmit = (type, data) => {
+    switch (type) {
+      case "raça":
+        setRaca(data);
+        return;
+      case "tamanho":
+        setTamanho(data);
+        return;
+      case "sexo":
+        setSexo(data);
+        return;
+      default:
+        return type;
+    }
   };
+
+  useEffect(() => {
+    setUrl(`${raca}&${tamanho}&${sexo}`);
+  }, [raca, tamanho, sexo]);
 
   const getAnimals = (e) => {
     e.preventDefault();
+    const baseUrl = "https://adote-um-humano.herokuapp.com/animals?";
+
+    axios.get(`${baseUrl + url}`).then((res) => setAnimals(res.data));
   };
 
   return (

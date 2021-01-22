@@ -21,8 +21,8 @@ const FilterFeature = ({ animals, type, handleSubmit }) => {
   }, [animals, type, values]);
 
   useEffect(() => {
-    handleSubmit(checked, url);
-  }, [url, checked, handleSubmit]);
+    handleSubmit(type, url);
+  }, [url, checked]);
 
   const selectRadio = (e) => {
     setChecked(e.target.value);
