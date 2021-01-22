@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { thunkUserAuthenticated, thunkIsDonor } from "./redux/thunk";
 
 import Routes from "./Routes";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 const App = () => {
   const location = useLocation();
@@ -17,7 +19,13 @@ const App = () => {
     dispatch(thunkIsDonor(id, token));
   }, [location.pathname]);
 
-  return <Routes />;
+  return (
+    <>
+      <Header />
+      <Routes />
+      <Footer />
+    </>
+  );
 };
 
 export default App;
