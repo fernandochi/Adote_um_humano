@@ -67,6 +67,12 @@ const Input = styled.input`
   outline: none;
   border-radius: 5px;
   height: 30px;
+  width: 200px;
+
+  @media (min-width: 700px) {
+    width: 250px;
+    height: 25px;
+  }
 `;
 
 const Errors = styled.span`
