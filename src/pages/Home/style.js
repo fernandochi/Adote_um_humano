@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   max-width: 100vw;
-  max-height: 100vh;
+  height: 85vh;
   text-align: center;
   display: flex;
   justify-content: center;
