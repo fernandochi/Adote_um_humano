@@ -85,7 +85,7 @@ const MenuMobile = () => {
             <MenuItem onClick={() => history.push("/donor/my-animals")}>
               Meus animais
             </MenuItem>
-            <MenuItem onClick={() => history.push("/donor/humans")}>
+            <MenuItem onClick={() => history.push("/donor/applications")}>
               Humanos interessados
             </MenuItem>
             <MenuItem
@@ -104,7 +104,7 @@ const MenuMobile = () => {
             <MenuItem onClick={() => history.push("/animals")}>
               Animais
             </MenuItem>
-            <MenuItem onClick={() => history.push("/adopter/favorites")}>
+            <MenuItem onClick={() => history.push("/adopter/applications")}>
               Quero adotar
             </MenuItem>
             <MenuItem
