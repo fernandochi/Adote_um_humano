@@ -1,18 +1,8 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: space-between;
-  flex-wrap: wrap;
-`;
-
-const Conteudo = styled.div`
-  width: 100vw;
+  max-width: 100vw;
+  max-height: 100vh;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -24,32 +14,33 @@ const ParteOne = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin-bottom: 5vw;
+  margin-bottom: 3vh;
+  margin-top: 2vh;
 `;
 
 const WhiteBox = styled.div`
-  width: 275px;
+  width: 200px;
   height: 287px;
   text-align: center;
   display: flex;
   justify-content: center;
 
   @media (min-width: 768px) {
-    width: 380px;
-    height: 295px;
+    width: 300px;
+    height: 250px;
     align-items: center;
     margin-right: 15px;
-    padding: 25px 25px;
+    padding: 5px 5px;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   @media (min-width: 1024px) {
-    width: 380px;
-    height: 295px;
+    width: 300px;
+    height: 250px;
     align-items: center;
     margin-right: 10vw;
-    padding: 25px 25px;
+    padding: 5px 5px;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
@@ -73,44 +64,6 @@ const TextBox = styled.div`
   color: #000000;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  font-size: 45px;
-  padding-bottom: 20px;
-`;
-
-const OrangeBox = styled.div`
-  background-color: #fad586;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 100%;
-  padding: 15px 10px 10px 10px;
-  border-radius: 5px;
-
-  @media (min-width: 768px) {
-    margin: 0 auto;
-    min-width: 319px;
-    max-width: 30vw;
-    height: 65vh;
-  }
-
-  @media (min-width: 1100px) {
-    margin: 0 auto;
-    max-height: 55vh;
-    max-width: 25vw;
-  }
-`;
-
-const Label = styled.label`
-  font-size: 20px;
-  @media (min-width: 768px) {
-    font-size: 25px;
-  }
-`;
-
 const Button = styled.button`
   border: none;
   outline: none;
@@ -123,31 +76,13 @@ const Button = styled.button`
   text-transform: uppercase;
   color: white;
   background-color: #184d47;
+  margin-bottom: 2vh;
+  margin-top: -30px;
+
   :hover {
     background-color: #6c8759;
     cursor: pointer;
   }
 `;
 
-const Link = styled.span`
-  font-size: 22px;
-  margin: 10px 0;
-  :hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-
-export {
-  WhiteBox,
-  Container,
-  PawAndFeet,
-  TextBox,
-  Title,
-  OrangeBox,
-  Label,
-  Button,
-  Link,
-  Conteudo,
-  ParteOne,
-};
+export { WhiteBox, Container, PawAndFeet, TextBox, Button, ParteOne };

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import CardPrimary from "../../components/CardPrimary/";
 
-export const Container = styled.div`
+const Container = styled.div`
   width: 90%;
   margin: 0 auto;
   max-width: 100%;
@@ -38,3 +39,17 @@ export const Container = styled.div`
     }
   }
 `;
+
+const NewCard = styled(CardPrimary)`
+  width: 400px;
+`;
+
+const Text = styled.div`
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: #000000;
+`;
+
+export { Container, Text, NewCard };

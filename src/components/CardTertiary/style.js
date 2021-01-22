@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { BsListCheck } from "react-icons/bs";
 
 export const CardContainer = styled.div`
-  width: 90%;
+  min-width: 280px;
   height: 300px;
   margin: 50px auto;
   border-radius: 10px;
@@ -10,11 +9,6 @@ export const CardContainer = styled.div`
   background-color: #184d47;
   display: flex;
   flex-wrap: nowrap;
-
-  div {
-    display: flex;
-    width: 100%;
-  }
 
   @media (min-width: 600px) {
     width: 60%;
@@ -53,13 +47,6 @@ export const InfoContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   color: #fff;
-`;
-
-export const FormCheck = styled(BsListCheck)`
-  width: 25px;
-  height: 25px;
-  color: white;
-  justify-self: flex-end;
 `;
 
 export const StyledButton = styled.div`

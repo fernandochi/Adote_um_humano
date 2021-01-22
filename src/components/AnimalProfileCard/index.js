@@ -27,7 +27,7 @@ const AnimalCard = ({ animal }) => {
       <Notification added={added} />
       <Card>
         {animal.map((animal, index) => (
-          <>
+          <div key={index}>
             <Information>
               <Image src={animal.avatar} alt={animal.name} />
               <TextInformation>
@@ -36,8 +36,8 @@ const AnimalCard = ({ animal }) => {
                 </Text>
                 <Text key={animal.age}>Idade: {animal.age}</Text>
                 <Text key={animal.size}>
-                  Porte: {animal.size === "small" ? "Pequeno" : "Grande"}{" "}
-                  {animal.size === "medium" && "Médio"}
+                  Porte: {animal.size === "pequeno" ? "Pequeno" : "Grande"}{" "}
+                  {animal.size === "médio" && "Médio"}
                 </Text>
                 <Text key={animal.color}>Pelagem: {animal.color}</Text>
                 <Text key={animal.castrated}>
@@ -50,7 +50,7 @@ const AnimalCard = ({ animal }) => {
             </Information>
             <Text margin={true}>Observações:</Text>
             <Observations key={animal.id}>{animal.obs}</Observations>
-          </>
+          </div>
         ))}
       </Card>
       {location.pathname === "/donor/animal/:id" ? (

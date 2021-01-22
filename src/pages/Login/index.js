@@ -15,9 +15,12 @@ import {
   Button,
   Link,
 } from "./style";
+import { useDispatch } from "react-redux";
+import { userAuthenticated, isDonor } from "../../redux/actions";
 
 const LoginUser = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [error, setError] = useState("");
 
@@ -51,8 +54,21 @@ const LoginUser = () => {
           })
           .then((res) => {
             window.localStorage.setItem("id", res.data.id);
-
-            res.data.donor ? history.push("/donor") : history.push("/adopter");
+            dispatch(userAuthenticated(true));
+            window.localStorage.setItem("auth", true);
+            if (res.data.donor) {
+              dispatch(isDonor(true));
+              window.localStorage.setItem("isDonor", true);
+              return history.push("/donor");
+            } else {
+              dispatch(isDonor(false));
+              window.localStorage.setItem("isDonor", false);
+              if (res.data.responsible) {
+                return history.push("/adopter");
+              } else {
+                return history.push("/adopter/responsible-form");
+              }
+            }
           });
       })
       .catch(() => setError("Email/Senha inválida!"));
