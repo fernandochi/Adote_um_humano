@@ -12,6 +12,7 @@ export const Container = styled.div`
     display: flex;
     flex-flow: row wrap;
     margin-top: 45px;
+    list-style: none;
   }
 
   li {

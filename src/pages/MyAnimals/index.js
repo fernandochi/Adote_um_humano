@@ -26,15 +26,19 @@ const MyAnimals = () => {
 
   return (
     <>
-      <Header />
       <Container>
-        {animals.length > 0 ? (
-          animals.map((animal) => <CardPrimary animal={animal} />)
-        ) : (
-          <span>No content</span>
-        )}
+        <ul>
+          {animals.length > 0 ? (
+            animals.map((animal, index) => (
+              <li key={index}>
+                <CardPrimary animal={animal} />
+              </li>
+            ))
+          ) : (
+            <span>No content</span>
+          )}
+        </ul>
       </Container>
-      <Footer />
     </>
   );
 };

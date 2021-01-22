@@ -6,10 +6,10 @@ import {
   FormCheck,
   StyledSpam,
 } from "./styles";
-import { BsListCheck } from "react-icons/bs";
 
 import { useHistory } from "react-router-dom";
 
+import UserNotFound from "../../assets/img/not_found.jpg";
 const CardSecondary = ({ user }) => {
   const history = useHistory();
   const isDonor = JSON.parse(window.localStorage.getItem("isDonor"));
@@ -18,18 +18,18 @@ const CardSecondary = ({ user }) => {
     <>
       <CardContainer>
         {user.map((user) => (
-          <>
+          <div key={user.id}>
             <ImageContainer>
-              <img src={user.avatar} alt="user" />
+              <img src={user.avatar ? user.avatar : UserNotFound} alt="user" />
             </ImageContainer>
-            <InfoContainer key={user.id}>
+            <InfoContainer>
               <StyledSpam key={user.name}>{user.name}</StyledSpam>
               <StyledSpam key={user.email}>{user.email}</StyledSpam>
               <StyledSpam key={user.contact}>{user.contact}</StyledSpam>
               <StyledSpam key={user.address}>{user.address}</StyledSpam>
               {responsiveForm && <FormCheck />}
             </InfoContainer>
-          </>
+          </div>
         ))}
       </CardContainer>
       <StyledButton

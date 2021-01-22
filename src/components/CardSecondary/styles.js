@@ -11,6 +11,11 @@ export const CardContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
 
+  div {
+    display: flex;
+    width: 100%;
+  }
+
   @media (min-width: 600px) {
     width: 60%;
   }

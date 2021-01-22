@@ -43,7 +43,14 @@ const WantToAdopt = () => {
   return (
     <Container>
       {animalsApllication.length !== 0 ? (
-        animalsApllication.map((animal) => <CardPrimary animal={animal} />)
+        <ul>
+          {animalsApllication.map((animal, index) => (
+            <li key={index}>
+              {" "}
+              <CardPrimary animal={animal} />
+            </li>
+          ))}
+        </ul>
       ) : (
         <Text>Você não se aplicou a adoção de nenhum animal</Text>
       )}

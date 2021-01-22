@@ -15,6 +15,7 @@ import HumansApplication from "../pages/HumansApplication";
 import WantToAdopt from "../pages/WantToAdopt";
 import EditProfilePage from "../pages/EditProfile";
 import Responsible from "../pages/ResponsibleForm";
+import MyAnimals from "../pages/MyAnimals";
 
 const Routes = () => {
   return (
@@ -65,6 +66,8 @@ const Routes = () => {
         path="/donor/applications"
         component={HumansApplication}
       />
+
+      <DonorRoute exact path="/donor/my-animals" component={MyAnimals} />
 
       <Route component={Error404} />
     </Switch>

@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { thunkUserAuthenticated, thunkIsDonor } from "./redux/thunk";
+import { thunkIsDonor } from "./redux/thunk";
 
 import Routes from "./Routes";
 import Header from "./components/header";
@@ -15,7 +15,6 @@ const App = () => {
   const token = window.localStorage.getItem("accessToken");
 
   useEffect(() => {
-    dispatch(thunkUserAuthenticated(token));
     dispatch(thunkIsDonor(id, token));
   }, [location.pathname]);
 
