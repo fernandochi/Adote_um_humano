@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
+  height: 90vh;
   display: flex;
-  justify-content: center;
+  list-style: none;
+  justify-content: space-around;
   align-items: center;
-  align-content: space-between;
   flex-wrap: wrap;
 `;
 

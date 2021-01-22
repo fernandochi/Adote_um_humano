@@ -9,37 +9,41 @@ const HumansApplication = () => {
   const token = window.localStorage.getItem("accessToken");
   const id = window.localStorage.getItem("id");
 
-  const getHumansInterested = () => {
-    axios
-      .get(
-        `https://adote-um-humano.herokuapp.com/animals?donorId=1&_embed=subscriber`
-      )
-      .then((res) => {
-        res.data.map((animal) =>
-          animal.subscriber.map((human) => {
-            axios
-              .get(
-                `https://adote-um-humano.herokuapp.com/users/${human.userId}`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-                }
-              )
-              .then((resp) => {
-                setHumansInterested([...humansInterested, resp.data]);
-              });
-          })
-        );
-      });
+  const loadHumans = async () => {
+    const firstRequest = await axios.get(
+      `https://adote-um-humano.herokuapp.com/animals?donorId=${id}&_embed=subscriber`
+    );
+
+    const secondRequest = await axios.get(
+      "https://adote-um-humano.herokuapp.com/users",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const animal = await firstRequest.data;
+
+    const humans = await secondRequest.data;
+
+    const subscribers = await animal.map((sub) => sub.subscriber);
+
+    const subs = await subscribers.flatMap((user) => user);
+
+    const adopters = subs
+      .map((sub) => humans.filter((user) => sub.userId === user.id))
+      .flatMap((user) => user);
+
+    setHumansInterested(adopters);
   };
 
-  useEffect(() => getHumansInterested(), []);
+  useEffect(() => loadHumans(), []);
 
   return (
     <Container>
       {humansInterested.length !== 0 ? (
-        humansInterested.map((human) => <CardTertiary user={human} />)
+        <CardTertiary user={humansInterested} />
       ) : (
         <Text>Seu(s) animai(s) não possue(m) aplicação</Text>
       )}
