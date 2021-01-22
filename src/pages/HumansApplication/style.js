@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 10px;
+  display: flex;
   list-style: none;
-  width: 100vw;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 const Text = styled.div`

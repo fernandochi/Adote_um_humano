@@ -9,29 +9,36 @@ const WantToAdopt = () => {
   const token = window.localStorage.getItem("accessToken");
   const id = window.localStorage.getItem("id");
 
-  const getAnimalsApllication = () => {
-    axios
-      .get("https://adote-um-humano.herokuapp.com/subscriber", {
+  const loadAnimals = async () => {
+    const firstRequest = await axios.get(
+      `https://adote-um-humano.herokuapp.com/subscriber`,
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      .then((res) => {
-        const animals = res.data.filter((user) => user.userId === id);
+      }
+    );
 
-        animals.map((animal) =>
-          axios
-            .get(
-              `https://adote-um-humano.herokuapp.com/animals/${animal.animalId}`
-            )
-            .then((resp) =>
-              setAnimalsApllication([...animalsApllication, resp.data])
-            )
-        );
-      });
+    const secondRequest = await axios.get(
+      "https://adote-um-humano.herokuapp.com/animals"
+    );
+
+    const animals = await secondRequest.data;
+
+    const subscribers = await firstRequest.data;
+
+    const userSubs = await subscribers.filter(
+      (sub) => sub.userId === parseInt(id)
+    );
+
+    const animalsToAdopt = await userSubs
+      .map((sub) => animals.filter((animal) => sub.animalId === animal.id))
+      .flatMap((animal) => animal);
+
+    setAnimalsApllication(animalsToAdopt);
   };
 
-  useEffect(() => getAnimalsApllication(), []);
+  useEffect(() => loadAnimals(), []);
 
   return (
     <Container>

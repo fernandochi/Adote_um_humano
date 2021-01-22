@@ -42,6 +42,12 @@ const Routes = () => {
         component={Responsible}
       />
 
+      <AdopterRoute
+        exact
+        path="/adopter/applications"
+        component={WantToAdopt}
+      />
+
       <DonorRoute exact path="/donor" component={Profile} />
 
       <DonorRoute
@@ -54,9 +60,11 @@ const Routes = () => {
 
       <DonorRoute exact path="/donor/edit-animal" component={EditAnimal} />
 
-      <Route exact path="/donor/applications" component={HumansApplication} />
-
-      <Route exact path="/adopter/applications" component={WantToAdopt} />
+      <DonorRoute
+        exact
+        path="/donor/applications"
+        component={HumansApplication}
+      />
 
       <Route component={Error404} />
     </Switch>

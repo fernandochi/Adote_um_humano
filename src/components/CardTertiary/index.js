@@ -6,7 +6,7 @@ import {
 } from "./style";
 
 const CardTertiary = ({ user }) => {
-  return (
+  return user.map((user) => (
     <CardContainer key={user.id}>
       <ImageContainer>
         <img src={user.avatar} alt="user" />
@@ -15,10 +15,10 @@ const CardTertiary = ({ user }) => {
         <StyledSpam key={user.name}>{user.name}</StyledSpam>
         <StyledSpam key={user.email}>{user.email}</StyledSpam>
         <StyledSpam key={user.contact}>{user.contact}</StyledSpam>
-        <StyledSpam key={user.address}>{user.address}</StyledSpam>)
+        <StyledSpam key={user.address}>{user.address}</StyledSpam>
       </InfoContainer>
     </CardContainer>
-  );
+  ));
 };
 
 export default CardTertiary;

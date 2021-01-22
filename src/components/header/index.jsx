@@ -75,7 +75,7 @@ const Header = () => {
                 )}
                 {isDonor === false ? (
                   <Button
-                    onClick={() => history.push("/adopter/favorites")}
+                    onClick={() => history.push("/adopter/applications")}
                     location={location.pathname}
                     path="adopter/favorites"
                   >
@@ -83,7 +83,7 @@ const Header = () => {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => history.push("/donor/humans")}
+                    onClick={() => history.push("/donor/applications")}
                     location={location.pathname}
                     path="donor/humans"
                   >
@@ -134,7 +134,7 @@ const Header = () => {
               Seus animais
             </Button>
             <Button
-              onClick={() => history.push("/donor/humans")}
+              onClick={() => history.push("/donor/applications")}
               location={location.pathname}
               path="donor/humans"
             >
@@ -172,7 +172,7 @@ const Header = () => {
               Animais
             </Button>
             <Button
-              onClick={() => history.push("/adopter/favorites")}
+              onClick={() => history.push("/adopter/applications")}
               location={location.pathname}
               path="adopter/favorites"
             >
